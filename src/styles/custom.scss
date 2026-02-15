@@ -1,0 +1,31 @@
+// Endava Color Palette
+$endava-red-orange: #ff5640;
+$endava-solid-blue: #192b37;
+$endava-pure-white: #ffffff;
+$solid-blue-90: #30404b;
+$solid-blue-20: #d1d5d7;
+$signal-negative-light: #d4403b;
+$signal-positive-light: #2d9c5b;
+$data-blue: #5899c4;
+
+// Bootstrap overrides
+$primary: $endava-solid-blue;
+$secondary: $solid-blue-20;
+$warning: $endava-red-orange;
+$danger: $signal-negative-light;
+$success: $signal-positive-light;
+$info: $data-blue;
+$body-bg: $endava-pure-white;
+$body-color: $endava-solid-blue;
+$card-bg: $endava-pure-white;
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Semantic aliases
+$slate-navy: $endava-solid-blue;
+$slate-navy-dark: $solid-blue-90;
+$accent-orange: $endava-red-orange;
+$neutral-gray: $solid-blue-20;

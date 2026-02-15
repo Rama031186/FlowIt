@@ -1,0 +1,149 @@
+// ─── Demo Users ──────────────────────────────────────────────
+export const DEMO_USERS = [
+  { id: 1, email: 'customer@demo.com', password: 'demo123', name: 'Sarah Johnson', role: 'CUSTOMER', avatar: null },
+  { id: 2, email: 'underwriter@demo.com', password: 'demo123', name: 'Michael Chen', role: 'UNDERWRITER', avatar: null },
+  { id: 3, email: 'admin@demo.com', password: 'demo123', name: 'Alex Rivera', role: 'ADMIN', avatar: null },
+];
+
+// ─── Products ────────────────────────────────────────────────
+export const PRODUCTS = [
+  {
+    id: 'P001', name: 'LifeGuard Plus', category: 'Life Insurance',
+    description: 'Comprehensive life coverage with modular add-ons for critical illness, accidental death, and disability benefits.',
+    basePrice: 45, version: '2.1', status: 'Active',
+    modules: [
+      { id: 'M001', name: 'Critical Illness', description: 'Covers 36 critical illnesses', intensities: ['Basic', 'Standard', 'Premium'], prices: [12, 22, 35] },
+      { id: 'M002', name: 'Accidental Death', description: 'Additional payout on accidental death', intensities: ['Standard', 'Enhanced'], prices: [8, 15] },
+      { id: 'M003', name: 'Disability Benefit', description: 'Monthly income on total disability', intensities: ['Basic', 'Standard', 'Premium'], prices: [10, 18, 28] },
+    ],
+  },
+  {
+    id: 'P002', name: 'FamilyShield', category: 'Family Insurance',
+    description: 'Family-oriented coverage with pooled benefits and flexible allocation across family members.',
+    basePrice: 65, version: '1.4', status: 'Active',
+    modules: [
+      { id: 'M004', name: 'Spouse Cover', description: 'Equal coverage for spouse', intensities: ['Standard', 'Premium'], prices: [20, 35] },
+      { id: 'M005', name: 'Child Cover', description: 'Coverage for up to 4 children', intensities: ['Basic', 'Standard'], prices: [10, 18] },
+      { id: 'M006', name: 'Education Fund', description: 'Education benefit on critical events', intensities: ['Standard', 'Premium'], prices: [15, 25] },
+    ],
+  },
+  {
+    id: 'P003', name: 'WellnessFirst', category: 'Health & Wellness',
+    description: 'Health-focused plan with wellness credits, gym memberships, and preventive care benefits.',
+    basePrice: 35, version: '3.0', status: 'Active',
+    modules: [
+      { id: 'M007', name: 'Gym & Fitness', description: 'Gym membership reimbursement', intensities: ['Basic', 'Premium'], prices: [8, 15] },
+      { id: 'M008', name: 'Mental Health', description: 'Therapy and counseling coverage', intensities: ['Basic', 'Standard', 'Premium'], prices: [10, 18, 28] },
+      { id: 'M009', name: 'Preventive Care', description: 'Annual checkups and screenings', intensities: ['Standard', 'Premium'], prices: [12, 20] },
+    ],
+  },
+  {
+    id: 'P004', name: 'ReturnShield', category: 'Return of Premium',
+    description: 'Get back your premiums if no claims are made during the policy term.',
+    basePrice: 55, version: '1.0', status: 'Draft',
+    modules: [
+      { id: 'M010', name: 'Full ROP', description: '100% premium return at maturity', intensities: ['Standard'], prices: [25] },
+      { id: 'M011', name: 'Partial ROP', description: '50% premium return at maturity', intensities: ['Standard'], prices: [12] },
+    ],
+  },
+];
+
+// ─── Applications ────────────────────────────────────────────
+export const APPLICATIONS = [
+  { id: 'APP001', customerId: 1, customerName: 'Sarah Johnson', productId: 'P001', productName: 'LifeGuard Plus', selectedModules: ['Critical Illness (Premium)', 'Accidental Death (Enhanced)'], status: 'Pending Review', riskScore: 72, submittedDate: '2026-02-10', medicalDisclosure: true, totalPremium: 95 },
+  { id: 'APP002', customerId: 4, customerName: 'Emily Watson', productId: 'P002', productName: 'FamilyShield', selectedModules: ['Spouse Cover (Premium)', 'Child Cover (Standard)'], status: 'Under Review', riskScore: 45, submittedDate: '2026-02-08', medicalDisclosure: true, totalPremium: 118 },
+  { id: 'APP003', customerId: 5, customerName: 'David Kim', productId: 'P003', productName: 'WellnessFirst', selectedModules: ['Mental Health (Standard)', 'Preventive Care (Premium)'], status: 'Conditionally Approved', riskScore: 33, submittedDate: '2026-02-05', medicalDisclosure: false, totalPremium: 73, conditions: ['Complete health questionnaire', 'Provide lab results from last 6 months'] },
+  { id: 'APP004', customerId: 6, customerName: 'Lisa Park', productId: 'P001', productName: 'LifeGuard Plus', selectedModules: ['Critical Illness (Standard)', 'Disability Benefit (Premium)'], status: 'Approved', riskScore: 28, submittedDate: '2026-01-28', medicalDisclosure: true, totalPremium: 95, approvedDate: '2026-02-01' },
+  { id: 'APP005', customerId: 7, customerName: "James O'Brien", productId: 'P002', productName: 'FamilyShield', selectedModules: ['Spouse Cover (Standard)', 'Education Fund (Premium)'], status: 'Rejected', riskScore: 89, submittedDate: '2026-01-20', medicalDisclosure: true, totalPremium: 110, rejectedReason: 'High risk profile - pre-existing conditions not disclosed' },
+];
+
+// ─── Policies ────────────────────────────────────────────────
+export const POLICIES = [
+  { id: 'POL001', customerId: 1, customerName: 'Sarah Johnson', productName: 'LifeGuard Plus', status: 'Active', premium: 95, startDate: '2026-01-15', endDate: '2027-01-15', modules: ['Critical Illness (Premium)', 'Accidental Death (Enhanced)'] },
+  { id: 'POL002', customerId: 4, customerName: 'Emily Watson', productName: 'FamilyShield', status: 'Active', premium: 118, startDate: '2025-11-01', endDate: '2026-11-01', modules: ['Spouse Cover (Premium)', 'Child Cover (Standard)'] },
+  { id: 'POL003', customerId: 5, customerName: 'David Kim', productName: 'WellnessFirst', status: 'Expiring Soon', premium: 73, startDate: '2025-03-15', endDate: '2026-03-15', modules: ['Mental Health (Standard)', 'Preventive Care (Premium)'] },
+  { id: 'POL004', customerId: 6, customerName: 'Lisa Park', productName: 'LifeGuard Plus', status: 'Cancelled', premium: 95, startDate: '2025-06-01', endDate: '2026-06-01', modules: ['Critical Illness (Standard)'], cancelledDate: '2025-12-15', cancelReason: 'Customer requested' },
+];
+
+// ─── Family Pools ────────────────────────────────────────────
+export const FAMILY_POOLS = [
+  {
+    id: 'FP001', ownerId: 1, ownerName: 'Sarah Johnson', poolName: 'Johnson Family Pool',
+    totalCoverage: 500000, allocatedCoverage: 380000,
+    members: [
+      { name: 'Sarah Johnson', relation: 'Self', allocation: 200000 },
+      { name: 'Mark Johnson', relation: 'Spouse', allocation: 120000 },
+      { name: 'Emma Johnson', relation: 'Child', allocation: 60000 },
+    ],
+  },
+];
+
+// ─── Wellness ────────────────────────────────────────────────
+export const WELLNESS_DATA = {
+  totalCredits: 2450,
+  earnedThisMonth: 320,
+  redeemedThisMonth: 150,
+  activities: [
+    { id: 'W001', type: 'Steps Goal', description: 'Walked 10,000 steps', credits: 50, date: '2026-02-14', status: 'Earned' },
+    { id: 'W002', type: 'Gym Visit', description: 'Completed gym workout session', credits: 75, date: '2026-02-13', status: 'Earned' },
+    { id: 'W003', type: 'Health Checkup', description: 'Annual health screening completed', credits: 200, date: '2026-02-10', status: 'Earned' },
+    { id: 'W004', type: 'Meditation', description: '30 minutes meditation session', credits: 25, date: '2026-02-12', status: 'Earned' },
+    { id: 'W005', type: 'Nutrition Plan', description: 'Followed nutrition plan for 7 days', credits: 100, date: '2026-02-07', status: 'Earned' },
+  ],
+  redemptions: [
+    { id: 'R001', item: 'Premium Discount — 5%', credits: 500, date: '2026-02-01', status: 'Redeemed' },
+    { id: 'R002', item: 'Spa Voucher', credits: 300, date: '2026-01-25', status: 'Redeemed' },
+  ],
+  rewards: [
+    { id: 'RW001', name: 'Premium Discount — 5%', creditsRequired: 500, category: 'Insurance' },
+    { id: 'RW002', name: 'Premium Discount — 10%', creditsRequired: 900, category: 'Insurance' },
+    { id: 'RW003', name: 'Spa Voucher', creditsRequired: 300, category: 'Wellness' },
+    { id: 'RW004', name: 'Gym Membership — 1 Month', creditsRequired: 400, category: 'Fitness' },
+    { id: 'RW005', name: 'Health Store Gift Card', creditsRequired: 250, category: 'Shopping' },
+  ],
+};
+
+// ─── Notifications ───────────────────────────────────────────
+export const NOTIFICATIONS = [
+  { id: 'N001', title: 'Policy Renewal Reminder', message: 'Your WellnessFirst policy (POL003) is expiring on March 15, 2026. Renew now to continue coverage.', type: 'warning', date: '2026-02-14', read: false },
+  { id: 'N002', title: 'Application Approved', message: 'Your application APP004 for LifeGuard Plus has been approved. View your new policy documents.', type: 'success', date: '2026-02-01', read: true },
+  { id: 'N003', title: 'Wellness Credits Earned', message: 'You earned 200 credits for completing your annual health screening.', type: 'info', date: '2026-02-10', read: false },
+  { id: 'N004', title: 'New Product Available', message: 'ReturnShield is now available! Get back your premiums if no claims are made.', type: 'info', date: '2026-02-12', read: false },
+  { id: 'N005', title: 'Family Pool Updated', message: 'Coverage allocation in Johnson Family Pool has been updated successfully.', type: 'success', date: '2026-02-08', read: true },
+];
+
+// ─── Business Rules ──────────────────────────────────────────
+export const BUSINESS_RULES = [
+  { id: 'BR001', name: 'Max Risk Score Threshold', category: 'Underwriting', value: '85', description: 'Applications with risk score above this threshold are auto-rejected', status: 'Active', lastModified: '2026-01-15' },
+  { id: 'BR002', name: 'Auto-Approve Threshold', category: 'Underwriting', value: '30', description: 'Applications with risk score below this threshold are auto-approved', status: 'Active', lastModified: '2026-01-15' },
+  { id: 'BR003', name: 'Max Family Pool Size', category: 'Family Pool', value: '6', description: 'Maximum number of members in a family pool', status: 'Active', lastModified: '2026-01-10' },
+  { id: 'BR004', name: 'Wellness Credit Expiry', category: 'Wellness', value: '365', description: 'Number of days before unused wellness credits expire', status: 'Active', lastModified: '2026-01-05' },
+  { id: 'BR005', name: 'Policy Grace Period', category: 'Policy', value: '30', description: 'Days of grace period after policy expiry before cancellation', status: 'Active', lastModified: '2025-12-20' },
+  { id: 'BR006', name: 'Medical Disclosure Required', category: 'Underwriting', value: 'true', description: 'Whether medical disclosure is mandatory for all applications', status: 'Active', lastModified: '2025-12-15' },
+  { id: 'BR007', name: 'Min Coverage Amount', category: 'Policy', value: '10000', description: 'Minimum coverage amount for any policy', status: 'Inactive', lastModified: '2025-11-20' },
+];
+
+// ─── Admin Users ─────────────────────────────────────────────
+export const ALL_USERS = [
+  { id: 1, name: 'Sarah Johnson', email: 'sarah.johnson@email.com', role: 'CUSTOMER', status: 'Active', joinDate: '2025-06-15', lastLogin: '2026-02-14' },
+  { id: 2, name: 'Michael Chen', email: 'michael.chen@email.com', role: 'UNDERWRITER', status: 'Active', joinDate: '2025-03-10', lastLogin: '2026-02-14' },
+  { id: 3, name: 'Alex Rivera', email: 'alex.rivera@email.com', role: 'ADMIN', status: 'Active', joinDate: '2024-11-01', lastLogin: '2026-02-15' },
+  { id: 4, name: 'Emily Watson', email: 'emily.watson@email.com', role: 'CUSTOMER', status: 'Active', joinDate: '2025-08-22', lastLogin: '2026-02-12' },
+  { id: 5, name: 'David Kim', email: 'david.kim@email.com', role: 'CUSTOMER', status: 'Active', joinDate: '2025-04-18', lastLogin: '2026-02-10' },
+  { id: 6, name: 'Lisa Park', email: 'lisa.park@email.com', role: 'CUSTOMER', status: 'Suspended', joinDate: '2025-07-30', lastLogin: '2025-12-20' },
+  { id: 7, name: "James O'Brien", email: 'james.obrien@email.com', role: 'CUSTOMER', status: 'Active', joinDate: '2025-09-05', lastLogin: '2026-02-13' },
+  { id: 8, name: 'Priya Sharma', email: 'priya.sharma@email.com', role: 'UNDERWRITER', status: 'Active', joinDate: '2025-05-12', lastLogin: '2026-02-14' },
+  { id: 9, name: 'Tom Wilson', email: 'tom.wilson@email.com', role: 'ADMIN', status: 'Active', joinDate: '2025-01-20', lastLogin: '2026-02-11' },
+  { id: 10, name: 'Maria Garcia', email: 'maria.garcia@email.com', role: 'CUSTOMER', status: 'Inactive', joinDate: '2025-02-28', lastLogin: '2025-10-05' },
+];
+
+// ─── Audit Logs ──────────────────────────────────────────────
+export const AUDIT_LOGS = [
+  { id: 'AL001', action: 'USER_LOGIN', actor: 'Alex Rivera', role: 'ADMIN', timestamp: '2026-02-15 09:30:00', details: 'Admin login from 192.168.1.100' },
+  { id: 'AL002', action: 'POLICY_ISSUED', actor: 'System', role: 'SYSTEM', timestamp: '2026-02-14 14:22:00', details: 'Policy POL001 issued for Sarah Johnson' },
+  { id: 'AL003', action: 'APPLICATION_REVIEWED', actor: 'Michael Chen', role: 'UNDERWRITER', timestamp: '2026-02-14 11:15:00', details: 'Application APP002 reviewed — status changed to Under Review' },
+  { id: 'AL004', action: 'PRODUCT_UPDATED', actor: 'Alex Rivera', role: 'ADMIN', timestamp: '2026-02-13 16:45:00', details: 'Product P003 WellnessFirst updated to version 3.0' },
+  { id: 'AL005', action: 'POLICY_CANCELLED', actor: 'Lisa Park', role: 'CUSTOMER', timestamp: '2025-12-15 10:00:00', details: 'Policy POL004 cancelled by customer request' },
+  { id: 'AL006', action: 'RISK_SCORE_GENERATED', actor: 'System', role: 'SYSTEM', timestamp: '2026-02-10 08:00:00', details: 'Risk score 72 generated for application APP001' },
+  { id: 'AL007', action: 'RULE_MODIFIED', actor: 'Alex Rivera', role: 'ADMIN', timestamp: '2026-01-15 13:30:00', details: 'Business rule BR001 updated — threshold changed to 85' },
+];
