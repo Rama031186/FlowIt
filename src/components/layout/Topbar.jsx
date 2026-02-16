@@ -32,37 +32,46 @@ export default function Topbar({ collapsed, onToggle, title }) {
     .toUpperCase() || '??';
 
   return (
-    <header className={`topbar ${collapsed ? 'sidebar-collapsed' : ''}`}>
-      <div className="topbar-left">
-        <button className="topbar-toggle" onClick={onToggle}>
+    <header className={`topbar d-flex align-items-center justify-content-between px-4 ${collapsed ? 'sidebar-collapsed' : ''}`}>
+      <div className="d-flex align-items-center gap-3">
+        <button
+          className="btn btn-link text-dark p-1"
+          style={{ borderRadius: 10, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          onClick={onToggle}
+        >
           <FiMenu />
         </button>
-        {title && <span className="topbar-title">{title}</span>}
+        {title && <span className="fw-semibold d-none d-md-block" style={{ fontSize: 18 }}>{title}</span>}
       </div>
 
-      <div className="topbar-right">
+      <div className="d-flex align-items-center gap-2">
         <button
-          className="topbar-icon-btn"
+          className="btn btn-link text-dark position-relative p-2"
+          style={{ borderRadius: 10 }}
           onClick={() => navigate('/admin-portal/notifications')}
         >
           <FiBell />
-          <span className="notif-dot"></span>
+          <span className="position-absolute top-0 end-0 rounded-circle bg-danger" style={{ width: 8, height: 8 }}></span>
         </button>
 
-        <div className="profile-dropdown" ref={menuRef}>
+        <div className="position-relative" ref={menuRef}>
           <div
-            className="topbar-user"
+            className="d-flex align-items-center gap-2 p-1 rounded-3"
+            style={{ cursor: 'pointer', transition: 'all 0.2s' }}
             onClick={() => setShowMenu(!showMenu)}
           >
             <div
-              className="topbar-avatar"
-              style={{ background: ROLE_COLORS[user?.role] || '#192b37' }}
+              className="d-flex align-items-center justify-content-center rounded-3 text-white fw-bold"
+              style={{
+                width: 34, height: 34, fontSize: 12,
+                background: ROLE_COLORS[user?.role] || '#192b37',
+              }}
             >
               {initials}
             </div>
-            <div className="topbar-user-info d-none d-md-block">
-              <div className="topbar-user-name">{user?.name}</div>
-              <div className="topbar-user-role">
+            <div className="d-none d-md-block lh-sm">
+              <div className="fw-semibold" style={{ fontSize: 13 }}>{user?.name}</div>
+              <div className="text-muted" style={{ fontSize: 11 }}>
                 {ROLE_LABELS[user?.role] || user?.role}
               </div>
             </div>

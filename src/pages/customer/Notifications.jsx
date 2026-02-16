@@ -19,13 +19,13 @@ export default function Notifications() {
 
   return (
     <>
-      <div className="page-header d-flex align-items-start justify-content-between">
+      <div className="mb-4 d-flex align-items-start justify-content-between">
         <div>
           <h1>Notifications</h1>
           <p>{unreadCount > 0 ? `You have ${unreadCount} unread notification${unreadCount > 1 ? 's' : ''}` : 'All caught up!'}</p>
         </div>
         {unreadCount > 0 && (
-          <button className="btn-outline-custom d-flex align-items-center gap-2" style={{ fontSize: 13 }} onClick={markAllRead}>
+          <button className="btn btn-outline-secondary d-flex align-items-center gap-2" style={{ fontSize: 13 }} onClick={markAllRead}>
             <FiCheck size={14} /> Mark all as read
           </button>
         )}
@@ -38,14 +38,14 @@ export default function Notifications() {
           return (
             <div
               key={n.id}
-              className="content-card"
+              className="card"
               style={{
                 borderLeft: `3px solid ${config.color}`,
                 opacity: n.read ? 0.65 : 1,
                 transition: 'all 0.3s'
               }}
             >
-              <div className="card-body-custom d-flex align-items-start gap-3">
+              <div className="card-body d-flex align-items-start gap-3">
                 <div style={{
                   width: 44, height: 44, borderRadius: 12, flexShrink: 0,
                   background: config.bg, color: config.color,

@@ -18,15 +18,15 @@ export default function ProfilePage() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>My Profile</h1>
         <p>Manage your personal information and account settings</p>
       </div>
 
       <div className="row g-4">
         <div className="col-lg-4">
-          <div className="content-card text-center">
-            <div className="card-body-custom">
+          <div className="card text-center">
+            <div className="card-body">
               <div style={{
                 width: 96, height: 96, borderRadius: 24, margin: '0 auto 16px',
                 background: ROLE_COLORS[user?.role] || '#192b37',
@@ -57,18 +57,18 @@ export default function ProfilePage() {
         </div>
 
         <div className="col-lg-8">
-          <div className="content-card">
-            <div className="card-header-custom">
+          <div className="card">
+            <div className="card-header">
               <h5>Personal Information</h5>
               <button
-                className={editing ? 'btn-accent' : 'btn-outline-custom'}
+                className={editing ? 'btn btn-warning' : 'btn btn-outline-secondary'}
                 style={{ fontSize: 12, padding: '6px 16px' }}
                 onClick={() => setEditing(!editing)}
               >
                 {editing ? <><FiSave size={12} /> Save</> : <><FiEdit2 size={12} /> Edit</>}
               </button>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               <div className="row g-3">
                 {[
                   { label: 'Full Name', key: 'name', icon: FiUser },
@@ -81,7 +81,7 @@ export default function ProfilePage() {
                     <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>{field.label}</label>
                     <input
                       type={field.type || 'text'}
-                      className="auth-input"
+                      className="form-control"
                       value={profile[field.key]}
                       onChange={e => setProfile(prev => ({ ...prev, [field.key]: e.target.value }))}
                       disabled={!editing}
@@ -93,24 +93,24 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          <div className="content-card mt-4">
-            <div className="card-header-custom">
+          <div className="card mt-4">
+            <div className="card-header">
               <h5><FiShield size={16} /> Security</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               <div className="d-flex align-items-center justify-content-between p-3 mb-2" style={{ background: 'rgba(25,43,55,0.02)', borderRadius: 12 }}>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 14 }}>Password</div>
                   <div style={{ fontSize: 12, opacity: 0.5 }}>Last changed 30 days ago</div>
                 </div>
-                <button className="btn-outline-custom" style={{ fontSize: 12, padding: '6px 16px' }}>Change Password</button>
+                <button className="btn btn-outline-secondary" style={{ fontSize: 12, padding: '6px 16px' }}>Change Password</button>
               </div>
               <div className="d-flex align-items-center justify-content-between p-3" style={{ background: 'rgba(25,43,55,0.02)', borderRadius: 12 }}>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 14 }}>Two-Factor Authentication</div>
                   <div style={{ fontSize: 12, opacity: 0.5 }}>Add an extra layer of security</div>
                 </div>
-                <button className="btn-outline-custom" style={{ fontSize: 12, padding: '6px 16px' }}>Enable</button>
+                <button className="btn btn-outline-secondary" style={{ fontSize: 12, padding: '6px 16px' }}>Enable</button>
               </div>
             </div>
           </div>

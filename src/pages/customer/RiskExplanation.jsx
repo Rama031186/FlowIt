@@ -16,14 +16,14 @@ export default function RiskExplanation() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Risk Explanation</h1>
         <p>Understanding how your risk assessment was calculated</p>
       </div>
 
       <div className="row g-4 mb-4">
         <div className="col-md-4">
-          <div className="stat-card text-center">
+          <div className="card border-0 h-100 text-center">
             <div style={{
               width: 100, height: 100, borderRadius: '50%', margin: '0 auto 16px',
               background: `conic-gradient(${riskColor} 0% ${totalScore}%, rgba(25,43,55,0.06) ${totalScore}% 100%)`,
@@ -38,11 +38,11 @@ export default function RiskExplanation() {
           </div>
         </div>
         <div className="col-md-8">
-          <div className="content-card h-100">
-            <div className="card-header-custom">
+          <div className="card h-100">
+            <div className="card-header">
               <h5><FiAlertCircle size={16} /> What This Means</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               <p style={{ fontSize: 14, lineHeight: 1.7 }}>
                 Your risk score of <strong>{totalScore}</strong> is classified as <strong style={{ color: riskColor }}>{riskLevel} Risk</strong>.
                 This score is calculated based on multiple factors including your age, health history, lifestyle, and family medical background.
@@ -56,11 +56,11 @@ export default function RiskExplanation() {
         </div>
       </div>
 
-      <div className="content-card">
-        <div className="card-header-custom">
+      <div className="card">
+        <div className="card-header">
           <h5>Risk Factor Breakdown</h5>
         </div>
-        <div className="card-body-custom">
+        <div className="card-body">
           {riskFactors.map((f, i) => (
             <div key={i} className="d-flex align-items-center gap-3 p-3 mb-2" style={{ background: 'rgba(25,43,55,0.02)', borderRadius: 12 }}>
               <div style={{

@@ -19,7 +19,7 @@ export default function PolicyControl() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Policy Control</h1>
         <p>View and manage all policies across the system</p>
       </div>
@@ -32,21 +32,21 @@ export default function PolicyControl() {
           { label: 'Cancelled', value: policies.filter(p => p.status === 'Cancelled').length, color: '#d4403b', icon: FiXCircle },
         ].map(s => (
           <div className="col-md-3" key={s.label}>
-            <div className="stat-card">
-              <div className="stat-icon" style={{ background: `${s.color}12`, color: s.color }}><s.icon /></div>
-              <div className="stat-value">{s.value}</div>
-              <div className="stat-label">{s.label}</div>
+            <div className="card border-0 h-100">
+              <div className="d-flex align-items-center justify-content-center rounded-3 mb-3" style={{ background: `${s.color}12`, color: s.color }}><s.icon /></div>
+              <div className="fw-bold mb-1">{s.value}</div>
+              <div className="text-muted small">{s.label}</div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="content-card">
-        <div className="card-body-custom pb-0">
+      <div className="card">
+        <div className="card-body pb-0">
           <div className="d-flex gap-3 flex-wrap mb-3">
             <div className="position-relative flex-fill" style={{ maxWidth: 320 }}>
               <FiSearch style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.3 }} />
-              <input className="auth-input" style={{ paddingLeft: 40 }} placeholder="Search policies..." value={search} onChange={e => setSearch(e.target.value)} />
+              <input className="form-control" style={{ paddingLeft: 40 }} placeholder="Search policies..." value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <div className="d-flex gap-2">
               {statuses.map(s => (
@@ -59,8 +59,8 @@ export default function PolicyControl() {
             </div>
           </div>
         </div>
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>Policy ID</th><th>Customer</th><th>Product</th><th>Premium</th><th>Period</th><th>Status</th><th>Actions</th></tr></thead>
             <tbody>
               {filtered.map(p => (

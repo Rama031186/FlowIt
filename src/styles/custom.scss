@@ -1,4 +1,8 @@
-// Endava Color Palette
+// ═══════════════════════════════════════════════════════════
+// InsureFlow — Bootstrap 5 Theme Overrides
+// ═══════════════════════════════════════════════════════════
+
+// ─── Brand Palette (Endava) ──────────────────────────────
 $endava-red-orange: #ff5640;
 $endava-solid-blue: #192b37;
 $endava-pure-white: #ffffff;
@@ -8,24 +12,213 @@ $signal-negative-light: #d4403b;
 $signal-positive-light: #2d9c5b;
 $data-blue: #5899c4;
 
-// Bootstrap overrides
+// ─── Bootstrap Variable Overrides ────────────────────────
 $primary: $endava-solid-blue;
 $secondary: $solid-blue-20;
 $warning: $endava-red-orange;
 $danger: $signal-negative-light;
 $success: $signal-positive-light;
 $info: $data-blue;
-$body-bg: $endava-pure-white;
+$body-bg: #f4f6f8;
 $body-color: $endava-solid-blue;
 $card-bg: $endava-pure-white;
 
+// Typography
 $font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-size-base: 0.875rem; // 14px
+$headings-font-weight: 800;
+$font-weight-bold: 700;
+$font-weight-bolder: 800;
 
-// Import Bootstrap
+// Border radius (modern rounded look)
+$border-radius: 0.625rem; // 10px
+$border-radius-sm: 0.5rem; // 8px
+$border-radius-lg: 0.875rem; // 14px
+$border-radius-xl: 1rem; // 16px
+$border-radius-pill: 50rem;
+
+// Cards
+$card-border-radius: 1rem; // 16px
+$card-border-color: rgba($endava-solid-blue, 0.04);
+$card-cap-bg: transparent;
+$card-cap-padding-y: 1.25rem;
+$card-cap-padding-x: 1.5rem;
+$card-spacer-y: 1.5rem;
+$card-spacer-x: 1.5rem;
+$card-box-shadow: 0 1px 3px rgba($endava-solid-blue, 0.08);
+
+// Tables
+$table-cell-padding-y: 0.875rem;
+$table-cell-padding-x: 1rem;
+$table-border-color: rgba($endava-solid-blue, 0.04);
+$table-striped-bg: transparent;
+$table-hover-bg: rgba($data-blue, 0.04);
+$table-th-font-weight: 600;
+
+// Buttons
+$btn-border-radius: 0.625rem; // 10px
+$btn-font-weight: 600;
+$btn-font-size: 0.8125rem; // 13px
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.5rem;
+$btn-focus-box-shadow: none;
+
+// Forms / Inputs
+$input-border-radius: 0.75rem; // 12px
+$input-border-color: $solid-blue-20;
+$input-border-width: 1.5px;
+$input-focus-border-color: $endava-solid-blue;
+$input-focus-box-shadow: 0 0 0 3px rgba($endava-solid-blue, 0.08);
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+$input-font-size: 0.875rem; // 14px
+
+// Badges
+$badge-font-size: 0.75rem;
+$badge-font-weight: 600;
+$badge-padding-y: 0.3125rem;
+$badge-padding-x: 0.75rem;
+$badge-border-radius: 0.5rem; // 8px
+
+// Alerts
+$alert-border-radius: 0.75rem;
+
+// Transitions
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Dropdown
+$dropdown-border-radius: 0.875rem;
+$dropdown-border-color: rgba($endava-solid-blue, 0.06);
+$dropdown-box-shadow: 0 8px 30px rgba($endava-solid-blue, 0.12);
+$dropdown-item-padding-y: 0.625rem;
+$dropdown-item-padding-x: 0.875rem;
+
+// ─── Import Bootstrap ────────────────────────────────────
 @import "bootstrap/scss/bootstrap";
 
-// Semantic aliases
+// ─── Semantic Aliases (for App.css / inline use) ─────────
 $slate-navy: $endava-solid-blue;
 $slate-navy-dark: $solid-blue-90;
 $accent-orange: $endava-red-orange;
 $neutral-gray: $solid-blue-20;
+
+// ═══════════════════════════════════════════════════════════
+// Component-Level Overrides (post-import)
+// ═══════════════════════════════════════════════════════════
+
+// Card – match existing content-card look
+.card {
+  border: 1px solid rgba($endava-solid-blue, 0.04);
+  box-shadow: 0 1px 3px rgba($endava-solid-blue, 0.08);
+  transition: $transition-base;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba($endava-solid-blue, 0.1);
+}
+
+.card-header {
+  border-bottom: 1px solid rgba($endava-solid-blue, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+
+  h5 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+// Table – match existing modern-table look
+.table {
+  margin-bottom: 0;
+
+  thead th {
+    background: $body-bg;
+    font-size: 0.6875rem; // 11px
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    color: $solid-blue-90;
+    opacity: 0.7;
+    border: none;
+    white-space: nowrap;
+
+    &:first-child {
+      border-radius: 0.625rem 0 0 0.625rem;
+    }
+    &:last-child {
+      border-radius: 0 0.625rem 0.625rem 0;
+    }
+  }
+
+  tbody td {
+    font-size: 0.8125rem;
+    border-bottom: 1px solid rgba($endava-solid-blue, 0.04);
+    vertical-align: middle;
+  }
+
+  tbody tr {
+    transition: $transition-base;
+  }
+}
+
+// Badge variants for custom status semantics
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  white-space: nowrap;
+}
+
+// Button – gradient variants matching existing design
+.btn-warning {
+  background: linear-gradient(135deg, $endava-red-orange, #ff8066);
+  border: none;
+  color: white;
+
+  &:hover, &:focus {
+    box-shadow: 0 4px 16px rgba($endava-red-orange, 0.3);
+    transform: translateY(-1px);
+    color: white;
+    background: linear-gradient(135deg, darken($endava-red-orange, 3%), #ff7055);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, $endava-solid-blue, $solid-blue-90);
+  border: none;
+
+  &:hover, &:focus {
+    box-shadow: 0 4px 12px rgba($endava-solid-blue, 0.3);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, darken($endava-solid-blue, 3%), darken($solid-blue-90, 3%));
+  }
+}
+
+.btn-outline-secondary {
+  border-width: 1.5px;
+  border-color: $solid-blue-20;
+  color: $endava-solid-blue;
+
+  &:hover {
+    border-color: $endava-solid-blue;
+    background: $body-bg;
+    color: $endava-solid-blue;
+  }
+}
+
+// Form control – match auth-input style
+.form-control,
+.form-select {
+  transition: $transition-base;
+}

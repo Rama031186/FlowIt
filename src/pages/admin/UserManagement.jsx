@@ -21,12 +21,12 @@ export default function UserManagement() {
 
   return (
     <>
-      <div className="page-header d-flex align-items-start justify-content-between">
+      <div className="mb-4 d-flex align-items-start justify-content-between">
         <div>
           <h1>User Management</h1>
           <p>Manage users, roles, and permissions</p>
         </div>
-        <button className="btn-accent d-flex align-items-center gap-2" style={{ fontSize: 13 }}>
+        <button className="btn btn-warning d-flex align-items-center gap-2" style={{ fontSize: 13 }}>
           <FiPlus size={14} /> Add User
         </button>
       </div>
@@ -39,21 +39,21 @@ export default function UserManagement() {
           { label: 'Active', value: users.filter(u => u.status === 'Active').length, color: '#2d9c5b' },
         ].map(s => (
           <div className="col-md-3" key={s.label}>
-            <div className="stat-card">
-              <div className="stat-value">{s.value}</div>
-              <div className="stat-label">{s.label}</div>
+            <div className="card border-0 h-100">
+              <div className="fw-bold mb-1">{s.value}</div>
+              <div className="text-muted small">{s.label}</div>
               <div style={{ height: 3, background: s.color, borderRadius: 2, marginTop: 12, opacity: 0.3 }} />
             </div>
           </div>
         ))}
       </div>
 
-      <div className="content-card">
-        <div className="card-body-custom pb-0">
+      <div className="card">
+        <div className="card-body pb-0">
           <div className="d-flex gap-3 flex-wrap mb-3">
             <div className="position-relative flex-fill" style={{ maxWidth: 320 }}>
               <FiSearch style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.3 }} />
-              <input className="auth-input" style={{ paddingLeft: 40 }} placeholder="Search users..." value={search} onChange={e => setSearch(e.target.value)} />
+              <input className="form-control" style={{ paddingLeft: 40 }} placeholder="Search users..." value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <div className="d-flex gap-2">
               {roles.map(r => (
@@ -66,8 +66,8 @@ export default function UserManagement() {
             </div>
           </div>
         </div>
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>User</th><th>Email</th><th>Role</th><th>Status</th><th>Last Login</th><th>Actions</th></tr></thead>
             <tbody>
               {filtered.map(u => (

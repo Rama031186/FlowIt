@@ -14,7 +14,7 @@ export default function BrowseProducts() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Browse Products</h1>
         <p>Explore our modular insurance products and build your custom coverage</p>
       </div>
@@ -24,7 +24,7 @@ export default function BrowseProducts() {
           const color = categoryColors[product.category] || '#192b37';
           return (
             <div className="col-md-6 col-xl-3" key={product.id}>
-              <div className="product-card">
+              <div className="card border-0 h-100 p-4">
                 <div style={{
                   width: 48, height: 48, borderRadius: 14,
                   background: `${color}12`, color,
@@ -33,9 +33,9 @@ export default function BrowseProducts() {
                 }}>
                   <FiPackage size={22} />
                 </div>
-                <div className="product-category" style={{ color }}>{product.category}</div>
-                <div className="product-name">{product.name}</div>
-                <div className="product-desc">{product.description}</div>
+                <div className="small fw-semibold text-uppercase mb-1" style={{ color }}>{product.category}</div>
+                <div className="fw-bold fs-5 mb-2">{product.name}</div>
+                <div className="text-muted small">{product.description}</div>
 
                 <div className="d-flex align-items-center gap-2 mt-3 mb-2" style={{ fontSize: 12, opacity: 0.5 }}>
                   <FiStar size={12} />
@@ -46,11 +46,11 @@ export default function BrowseProducts() {
                 </div>
 
                 <div className="d-flex align-items-end justify-content-between mt-2">
-                  <div className="product-price">
+                  <div className="fw-bold fs-4">
                     ${product.basePrice}<span>/mo</span>
                   </div>
                   <button
-                    className="btn-accent d-flex align-items-center gap-1"
+                    className="btn btn-warning d-flex align-items-center gap-1"
                     style={{ fontSize: 12, padding: '8px 16px' }}
                     onClick={() => navigate(`/products/${product.id}`)}
                   >

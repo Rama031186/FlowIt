@@ -10,48 +10,48 @@ export default function RiskAnalysis() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Risk Analysis</h1>
         <p>Analyze risk scores across all applications and identify patterns</p>
       </div>
 
       <div className="row g-4 mb-4">
         <div className="col-md-3">
-          <div className="stat-card text-center">
-            <div className="stat-icon mx-auto" style={{ background: 'rgba(25,43,55,0.08)', color: '#192b37' }}><FiActivity /></div>
-            <div className="stat-value">{avgRisk}</div>
-            <div className="stat-label">Average Risk Score</div>
+          <div className="card border-0 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-3 mb-3 mx-auto" style={{ background: 'rgba(25,43,55,0.08)', color: '#192b37' }}><FiActivity /></div>
+            <div className="fw-bold mb-1">{avgRisk}</div>
+            <div className="text-muted small">Average Risk Score</div>
           </div>
         </div>
         <div className="col-md-3">
-          <div className="stat-card text-center">
-            <div className="stat-icon mx-auto" style={{ background: 'rgba(45,156,91,0.1)', color: '#2d9c5b' }}><FiCheckCircle /></div>
-            <div className="stat-value">{lowRisk}</div>
-            <div className="stat-label">Low Risk</div>
+          <div className="card border-0 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-3 mb-3 mx-auto" style={{ background: 'rgba(45,156,91,0.1)', color: '#2d9c5b' }}><FiCheckCircle /></div>
+            <div className="fw-bold mb-1">{lowRisk}</div>
+            <div className="text-muted small">Low Risk</div>
           </div>
         </div>
         <div className="col-md-3">
-          <div className="stat-card text-center">
-            <div className="stat-icon mx-auto" style={{ background: 'rgba(255,86,64,0.1)', color: '#ff5640' }}><FiTrendingUp /></div>
-            <div className="stat-value">{mediumRisk}</div>
-            <div className="stat-label">Medium Risk</div>
+          <div className="card border-0 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-3 mb-3 mx-auto" style={{ background: 'rgba(255,86,64,0.1)', color: '#ff5640' }}><FiTrendingUp /></div>
+            <div className="fw-bold mb-1">{mediumRisk}</div>
+            <div className="text-muted small">Medium Risk</div>
           </div>
         </div>
         <div className="col-md-3">
-          <div className="stat-card text-center">
-            <div className="stat-icon mx-auto" style={{ background: 'rgba(212,64,59,0.1)', color: '#d4403b' }}><FiAlertTriangle /></div>
-            <div className="stat-value">{highRisk}</div>
-            <div className="stat-label">High Risk</div>
+          <div className="card border-0 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-3 mb-3 mx-auto" style={{ background: 'rgba(212,64,59,0.1)', color: '#d4403b' }}><FiAlertTriangle /></div>
+            <div className="fw-bold mb-1">{highRisk}</div>
+            <div className="text-muted small">High Risk</div>
           </div>
         </div>
       </div>
 
       {/* Risk Distribution Bar */}
-      <div className="content-card mb-4">
-        <div className="card-header-custom">
+      <div className="card mb-4">
+        <div className="card-header">
           <h5>Risk Distribution</h5>
         </div>
-        <div className="card-body-custom">
+        <div className="card-body">
           <div className="d-flex" style={{ height: 32, borderRadius: 8, overflow: 'hidden' }}>
             <div style={{ width: `${(lowRisk / APPLICATIONS.length) * 100}%`, background: '#2d9c5b', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 11, fontWeight: 700, transition: 'width 0.6s' }}>
               {lowRisk > 0 && `${Math.round((lowRisk / APPLICATIONS.length) * 100)}%`}
@@ -79,12 +79,12 @@ export default function RiskAnalysis() {
       </div>
 
       {/* Applications sorted by risk */}
-      <div className="content-card">
-        <div className="card-header-custom">
+      <div className="card">
+        <div className="card-header">
           <h5>Applications by Risk Score</h5>
         </div>
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>ID</th><th>Customer</th><th>Product</th><th>Risk Score</th><th>Status</th></tr></thead>
             <tbody>
               {sortedByRisk.map(app => (

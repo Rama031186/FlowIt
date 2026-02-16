@@ -20,7 +20,7 @@ export default function ApplyPolicy() {
           </div>
           <h2 style={{ fontWeight: 800, fontSize: 24 }}>Application Submitted!</h2>
           <p style={{ opacity: 0.5, fontSize: 14, maxWidth: 400, margin: '8px auto 24px' }}>Your application has been submitted successfully. Our underwriting team will review it and get back to you soon.</p>
-          <button className="btn-primary-custom" onClick={() => navigate('/policies')}>View My Policies</button>
+          <button className="btn btn-primary" onClick={() => navigate('/policies')}>View My Policies</button>
         </div>
       </div>
     );
@@ -28,14 +28,14 @@ export default function ApplyPolicy() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Apply for Policy</h1>
         <p>Complete the steps below to submit your insurance application</p>
       </div>
 
       {/* Stepper */}
-      <div className="content-card mb-4">
-        <div className="card-body-custom">
+      <div className="card mb-4">
+        <div className="card-body">
           <div className="d-flex align-items-center justify-content-between">
             {steps.map((s, i) => (
               <div key={i} className="d-flex align-items-center flex-fill">
@@ -82,28 +82,28 @@ export default function ApplyPolicy() {
 
       {/* Step 1: Personal Details */}
       {step === 1 && (
-        <div className="content-card">
-          <div className="card-body-custom">
+        <div className="card">
+          <div className="card-body">
             <div className="row g-3">
               <div className="col-md-6">
                 <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Full Name</label>
-                <input className="auth-input" placeholder="Enter full name" defaultValue="Sarah Johnson" />
+                <input className="form-control" placeholder="Enter full name" defaultValue="Sarah Johnson" />
               </div>
               <div className="col-md-6">
                 <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Date of Birth</label>
-                <input type="date" className="auth-input" defaultValue="1990-05-15" />
+                <input type="date" className="form-control" defaultValue="1990-05-15" />
               </div>
               <div className="col-md-6">
                 <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Email</label>
-                <input type="email" className="auth-input" placeholder="Enter email" defaultValue="sarah@email.com" />
+                <input type="email" className="form-control" placeholder="Enter email" defaultValue="sarah@email.com" />
               </div>
               <div className="col-md-6">
                 <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Phone</label>
-                <input className="auth-input" placeholder="Enter phone" defaultValue="+1 555-0123" />
+                <input className="form-control" placeholder="Enter phone" defaultValue="+1 555-0123" />
               </div>
               <div className="col-md-12">
                 <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Address</label>
-                <input className="auth-input" placeholder="Enter address" defaultValue="123 Main Street, New York, NY 10001" />
+                <input className="form-control" placeholder="Enter address" defaultValue="123 Main Street, New York, NY 10001" />
               </div>
             </div>
           </div>
@@ -112,8 +112,8 @@ export default function ApplyPolicy() {
 
       {/* Step 2: Medical Info */}
       {step === 2 && (
-        <div className="content-card">
-          <div className="card-body-custom">
+        <div className="card">
+          <div className="card-body">
             <div className="mb-4">
               <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Do you have any pre-existing medical conditions?</label>
               <div className="d-flex gap-2">
@@ -139,8 +139,8 @@ export default function ApplyPolicy() {
 
       {/* Step 3: Review */}
       {step === 3 && (
-        <div className="content-card">
-          <div className="card-body-custom">
+        <div className="card">
+          <div className="card-body">
             <div className="d-flex align-items-center gap-3 mb-4 p-3" style={{ background: 'rgba(88,153,196,0.06)', borderRadius: 12 }}>
               <FiFileText size={24} style={{ color: '#5899c4' }} />
               <div>
@@ -167,10 +167,10 @@ export default function ApplyPolicy() {
 
       {/* Navigation */}
       <div className="d-flex justify-content-between mt-4">
-        <button className="btn-outline-custom d-flex align-items-center gap-2" onClick={() => step > 0 ? setStep(step - 1) : navigate('/products')} style={{ fontSize: 13 }}>
+        <button className="btn btn-outline-secondary d-flex align-items-center gap-2" onClick={() => step > 0 ? setStep(step - 1) : navigate('/products')} style={{ fontSize: 13 }}>
           <FiArrowLeft size={14} /> {step === 0 ? 'Back to Products' : 'Previous'}
         </button>
-        <button className="btn-accent d-flex align-items-center gap-2" onClick={() => step < 3 ? setStep(step + 1) : setSubmitted(true)} style={{ fontSize: 13 }}
+        <button className="btn btn-warning d-flex align-items-center gap-2" onClick={() => step < 3 ? setStep(step + 1) : setSubmitted(true)} style={{ fontSize: 13 }}
           disabled={step === 0 && !selectedProduct}
         >
           {step === 3 ? 'Submit Application' : 'Continue'} <FiArrowRight size={14} />

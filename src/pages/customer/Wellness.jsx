@@ -7,40 +7,40 @@ export default function Wellness() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Wellness Center</h1>
         <p>Earn credits through healthy activities and redeem rewards</p>
       </div>
 
       <div className="row g-4 mb-4">
         <div className="col-md-4">
-          <div className="stat-card text-center">
+          <div className="card border-0 h-100 text-center">
             <div className="d-flex justify-content-center mb-3">
-              <div className="wellness-credit-ring">
-                <span className="credit-value">{WELLNESS_DATA.totalCredits}</span>
+              <div className="d-flex align-items-center justify-content-center rounded-circle mx-auto" style={{ width: 72, height: 72, background: 'conic-gradient(#2d9c5b 0% 75%, rgba(25,43,55,0.06) 75% 100%)', fontSize: 22, fontWeight: 800, color: '#192b37' }}>
+                <span style={{ fontSize: 22, fontWeight: 800, color: '#192b37' }}>{WELLNESS_DATA.totalCredits}</span>
               </div>
             </div>
-            <div className="stat-label">Total Credits Available</div>
+            <div className="text-muted small">Total Credits Available</div>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="stat-card">
-            <div className="stat-icon" style={{ background: 'rgba(45,156,91,0.1)', color: '#2d9c5b' }}><FiTrendingUp /></div>
-            <div className="stat-value">{WELLNESS_DATA.earnedThisMonth}</div>
-            <div className="stat-label">Earned This Month</div>
+          <div className="card border-0 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-3 mb-3" style={{ background: 'rgba(45,156,91,0.1)', color: '#2d9c5b' }}><FiTrendingUp /></div>
+            <div className="fw-bold mb-1">{WELLNESS_DATA.earnedThisMonth}</div>
+            <div className="text-muted small">Earned This Month</div>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="stat-card">
-            <div className="stat-icon" style={{ background: 'rgba(255,86,64,0.1)', color: '#ff5640' }}><FiGift /></div>
-            <div className="stat-value">{WELLNESS_DATA.redeemedThisMonth}</div>
-            <div className="stat-label">Redeemed This Month</div>
+          <div className="card border-0 h-100">
+            <div className="d-flex align-items-center justify-content-center rounded-3 mb-3" style={{ background: 'rgba(255,86,64,0.1)', color: '#ff5640' }}><FiGift /></div>
+            <div className="fw-bold mb-1">{WELLNESS_DATA.redeemedThisMonth}</div>
+            <div className="text-muted small">Redeemed This Month</div>
           </div>
         </div>
       </div>
 
-      <div className="content-card">
-        <div className="card-header-custom">
+      <div className="card">
+        <div className="card-header">
           <div className="d-flex gap-2">
             {['earn', 'redeem', 'rewards'].map(tab => (
               <button
@@ -58,7 +58,7 @@ export default function Wellness() {
             ))}
           </div>
         </div>
-        <div className="card-body-custom">
+        <div className="card-body">
           {activeTab === 'earn' && (
             <div>
               {WELLNESS_DATA.activities.map(a => (
@@ -106,7 +106,7 @@ export default function Wellness() {
                     <div style={{ fontSize: 12, opacity: 0.5, marginBottom: 12 }}>{rw.category}</div>
                     <div style={{ fontSize: 20, fontWeight: 800, color: '#192b37', marginBottom: 12 }}>{rw.creditsRequired} <span style={{ fontSize: 12, fontWeight: 500, opacity: 0.5 }}>credits</span></div>
                     <button
-                      className="btn-accent w-100"
+                      className="btn btn-warning w-100"
                       style={{ fontSize: 12, padding: '8px' }}
                       disabled={WELLNESS_DATA.totalCredits < rw.creditsRequired}
                     >

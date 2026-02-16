@@ -11,7 +11,7 @@ export default function ProductManagement() {
     return (
       <>
         <div className="d-flex align-items-center gap-3 mb-4">
-          <button className="btn-outline-custom" style={{ fontSize: 13, padding: '8px 16px' }} onClick={() => setSelectedProduct(null)}>← Back</button>
+          <button className="btn btn-outline-secondary" style={{ fontSize: 13, padding: '8px 16px' }} onClick={() => setSelectedProduct(null)}>← Back</button>
           <div>
             <h1 className="mb-0" style={{ fontSize: 24, fontWeight: 800 }}>{p.name}</h1>
             <p className="mb-0" style={{ fontSize: 13, opacity: 0.5 }}>{p.category} — v{p.version}</p>
@@ -21,9 +21,9 @@ export default function ProductManagement() {
 
         <div className="row g-4">
           <div className="col-lg-8">
-            <div className="content-card mb-4">
-              <div className="card-header-custom"><h5>Product Details</h5><button className="btn-outline-custom" style={{ fontSize: 12, padding: '6px 14px' }}><FiEdit2 size={12} /> Edit</button></div>
-              <div className="card-body-custom">
+            <div className="card mb-4">
+              <div className="card-header"><h5>Product Details</h5><button className="btn btn-outline-secondary" style={{ fontSize: 12, padding: '6px 14px' }}><FiEdit2 size={12} /> Edit</button></div>
+              <div className="card-body">
                 <p style={{ fontSize: 14, lineHeight: 1.7, opacity: 0.7 }}>{p.description}</p>
                 <div className="row g-3 mt-2">
                   {[
@@ -41,9 +41,9 @@ export default function ProductManagement() {
               </div>
             </div>
 
-            <div className="content-card">
-              <div className="card-header-custom"><h5>Modules</h5><button className="btn-accent" style={{ fontSize: 12, padding: '6px 14px' }}><FiPlus size={12} /> Add Module</button></div>
-              <div className="card-body-custom">
+            <div className="card">
+              <div className="card-header"><h5>Modules</h5><button className="btn btn-warning" style={{ fontSize: 12, padding: '6px 14px' }}><FiPlus size={12} /> Add Module</button></div>
+              <div className="card-body">
                 {p.modules.map(mod => (
                   <div key={mod.id} className="d-flex align-items-center gap-3 p-3 mb-2" style={{ background: 'rgba(25,43,55,0.02)', borderRadius: 12 }}>
                     <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(88,153,196,0.1)', color: '#5899c4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -68,9 +68,9 @@ export default function ProductManagement() {
           </div>
 
           <div className="col-lg-4">
-            <div className="content-card">
-              <div className="card-header-custom"><h5>Version History</h5></div>
-              <div className="card-body-custom">
+            <div className="card">
+              <div className="card-header"><h5>Version History</h5></div>
+              <div className="card-body">
                 {[
                   { version: p.version, date: '2026-02-01', change: 'Current version' },
                   { version: (parseFloat(p.version) - 0.1).toFixed(1), date: '2025-12-15', change: 'Added new module' },
@@ -94,19 +94,19 @@ export default function ProductManagement() {
 
   return (
     <>
-      <div className="page-header d-flex align-items-start justify-content-between">
+      <div className="mb-4 d-flex align-items-start justify-content-between">
         <div>
           <h1>Product Management</h1>
           <p>Maintain versioned insurance products and their modules</p>
         </div>
-        <button className="btn-accent d-flex align-items-center gap-2" style={{ fontSize: 13 }}>
+        <button className="btn btn-warning d-flex align-items-center gap-2" style={{ fontSize: 13 }}>
           <FiPlus size={14} /> Create Product
         </button>
       </div>
 
-      <div className="content-card">
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+      <div className="card">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>Product</th><th>Category</th><th>Base Price</th><th>Modules</th><th>Version</th><th>Status</th><th>Actions</th></tr></thead>
             <tbody>
               {products.map(p => (
@@ -125,7 +125,7 @@ export default function ProductManagement() {
                   <td style={{ fontSize: 12 }}>v{p.version}</td>
                   <td><span className={`status-badge ${p.status.toLowerCase()}`}>{p.status}</span></td>
                   <td>
-                    <button className="btn-outline-custom d-flex align-items-center gap-1" style={{ fontSize: 11, padding: '5px 12px' }} onClick={() => setSelectedProduct(p.id)}>
+                    <button className="btn btn-outline-secondary d-flex align-items-center gap-1" style={{ fontSize: 11, padding: '5px 12px' }} onClick={() => setSelectedProduct(p.id)}>
                       <FiEye size={12} /> View
                     </button>
                   </td>

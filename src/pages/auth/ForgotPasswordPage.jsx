@@ -40,7 +40,7 @@ export default function ForgotPasswordPage() {
               <p className="lead">Enter your email and we'll send you a reset link</p>
 
               {error && (
-                <div className="alert alert-danger py-2 px-3" style={{ borderRadius: 12, fontSize: 13 }}>
+                <div className="alert alert-danger py-2 px-3" style={{ fontSize: 13 }}>
                   {error}
                 </div>
               )}
@@ -50,10 +50,10 @@ export default function ForgotPasswordPage() {
                   <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Email Address</label>
                   <div className="position-relative">
                     <FiMail style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
-                    <input type="email" className="auth-input" style={{ paddingLeft: 40 }} placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="email" className="form-control" style={{ paddingLeft: 40 }} placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                   </div>
                 </div>
-                <button type="submit" className="auth-btn auth-btn-primary mt-2 d-flex align-items-center justify-content-center gap-2">
+                <button type="submit" className="btn btn-primary btn-lg w-100 mt-2 d-flex align-items-center justify-content-center gap-2">
                   Send Reset Link <FiArrowRight />
                 </button>
               </form>

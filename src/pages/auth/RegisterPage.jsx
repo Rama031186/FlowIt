@@ -49,7 +49,7 @@ export default function RegisterPage() {
           <p className="lead">Join InsureFlow to manage your insurance needs</p>
 
           {error && (
-            <div className="alert alert-danger d-flex align-items-center gap-2 py-2 px-3" style={{ borderRadius: 12, fontSize: 13 }}>
+            <div className="alert alert-danger d-flex align-items-center gap-2 py-2 px-3" style={{ fontSize: 13 }}>
               <FiShield /> {error}
             </div>
           )}
@@ -59,7 +59,7 @@ export default function RegisterPage() {
               <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Full Name</label>
               <div className="position-relative">
                 <FiUser style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
-                <input type="text" className="auth-input" style={{ paddingLeft: 40 }} placeholder="Enter your full name" value={name} onChange={(e) => setName(e.target.value)} required />
+                <input type="text" className="form-control" style={{ paddingLeft: 40 }} placeholder="Enter your full name" value={name} onChange={(e) => setName(e.target.value)} required />
               </div>
             </div>
 
@@ -67,7 +67,7 @@ export default function RegisterPage() {
               <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Email</label>
               <div className="position-relative">
                 <FiMail style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
-                <input type="email" className="auth-input" style={{ paddingLeft: 40 }} placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                <input type="email" className="form-control" style={{ paddingLeft: 40 }} placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
             </div>
 
@@ -75,7 +75,7 @@ export default function RegisterPage() {
               <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Password</label>
               <div className="position-relative">
                 <FiLock style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
-                <input type="password" className="auth-input" style={{ paddingLeft: 40 }} placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <input type="password" className="form-control" style={{ paddingLeft: 40 }} placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </div>
             </div>
 
@@ -83,11 +83,11 @@ export default function RegisterPage() {
               <label className="form-label" style={{ fontSize: 13, fontWeight: 600 }}>Confirm Password</label>
               <div className="position-relative">
                 <FiLock style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
-                <input type="password" className="auth-input" style={{ paddingLeft: 40 }} placeholder="Confirm your password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required />
+                <input type="password" className="form-control" style={{ paddingLeft: 40 }} placeholder="Confirm your password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required />
               </div>
             </div>
 
-            <button type="submit" className="auth-btn auth-btn-primary mt-3 d-flex align-items-center justify-content-center gap-2">
+            <button type="submit" className="btn btn-primary btn-lg w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
               Create Account <FiArrowRight />
             </button>
           </form>

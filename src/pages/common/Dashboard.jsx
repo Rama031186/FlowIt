@@ -6,18 +6,23 @@ import { useNavigate } from 'react-router-dom';
 
 function StatCard({ icon: Icon, label, value, change, changeType, color, onClick }) {
   return (
-    <div className="stat-card" onClick={onClick} style={{ cursor: onClick ? 'pointer' : 'default' }}>
-      <div className="stat-icon" style={{ background: `${color}15`, color }}>
-        <Icon />
-      </div>
-      <div className="stat-value">{value}</div>
-      <div className="stat-label">{label}</div>
-      {change && (
-        <div className={`stat-change ${changeType}`}>
-          {changeType === 'positive' ? <FiTrendingUp size={12} /> : <FiTrendingDown size={12} />}
-          {change}
+    <div className="card border-0 h-100" onClick={onClick} style={{ cursor: onClick ? 'pointer' : 'default', transition: 'all 0.3s' }}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(25,43,55,0.1)'; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = ''; }}
+    >
+      <div className="card-body p-4">
+        <div className="d-flex align-items-center justify-content-center rounded-3 mb-3" style={{ width: 48, height: 48, background: `${color}15`, color, fontSize: 22 }}>
+          <Icon />
         </div>
-      )}
+        <div className="fw-bold mb-1" style={{ fontSize: 28, letterSpacing: -0.5 }}>{value}</div>
+        <div className="text-muted small fw-medium">{label}</div>
+        {change && (
+          <span className={`badge mt-2 ${changeType === 'positive' ? 'text-bg-success' : 'text-bg-danger'}`} style={{ fontSize: 12, fontWeight: 600, opacity: 0.85 }}>
+            {changeType === 'positive' ? <FiTrendingUp size={12} /> : <FiTrendingDown size={12} />}
+            {' '}{change}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -46,13 +51,13 @@ function CustomerDashboardContent() {
 
       <div className="row g-4">
         <div className="col-lg-8">
-          <div className="content-card">
-            <div className="card-header-custom">
+          <div className="card">
+            <div className="card-header">
               <h5>My Policies</h5>
-              <button className="btn-outline-custom" style={{ fontSize: 12, padding: '6px 14px' }} onClick={() => navigate('/policies')}>View All <FiArrowRight size={12} /></button>
+              <button className="btn btn-outline-secondary btn-sm" style={{ fontSize: 12, padding: '6px 14px' }} onClick={() => navigate('/policies')}>View All <FiArrowRight size={12} /></button>
             </div>
-            <div className="card-body-custom p-0">
-              <table className="modern-table">
+            <div className="card-body p-0">
+              <table className="table">
                 <thead><tr><th>Policy</th><th>Product</th><th>Premium</th><th>Status</th></tr></thead>
                 <tbody>
                   {POLICIES.slice(0, 3).map(p => (
@@ -69,11 +74,11 @@ function CustomerDashboardContent() {
           </div>
         </div>
         <div className="col-lg-4">
-          <div className="content-card">
-            <div className="card-header-custom">
+          <div className="card">
+            <div className="card-header">
               <h5>Recent Notifications</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               {NOTIFICATIONS.slice(0, 3).map(n => (
                 <div key={n.id} className="d-flex gap-3 mb-3 pb-3" style={{ borderBottom: '1px solid rgba(25,43,55,0.04)' }}>
                   <div style={{
@@ -122,13 +127,13 @@ function UnderwriterDashboardContent() {
         </div>
       </div>
 
-      <div className="content-card">
-        <div className="card-header-custom">
+      <div className="card">
+        <div className="card-header">
           <h5>Recent Applications</h5>
-          <button className="btn-accent" style={{ fontSize: 12, padding: '8px 16px' }} onClick={() => navigate('/applications')}>Review All</button>
+          <button className="btn btn-warning btn-sm" style={{ fontSize: 12, padding: '8px 16px' }} onClick={() => navigate('/applications')}>Review All</button>
         </div>
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>ID</th><th>Customer</th><th>Product</th><th>Risk Score</th><th>Status</th><th>Submitted</th></tr></thead>
             <tbody>
               {APPLICATIONS.map(app => (
@@ -175,11 +180,11 @@ function AdminDashboardContent() {
 
       <div className="row g-4">
         <div className="col-lg-6">
-          <div className="content-card">
-            <div className="card-header-custom">
+          <div className="card">
+            <div className="card-header">
               <h5>Quick Actions</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               <div className="d-flex flex-column gap-2">
                 {[
                   { icon: FiUsers, label: 'Manage Users', path: '/admin/users', color: '#192b37' },
@@ -204,11 +209,11 @@ function AdminDashboardContent() {
           </div>
         </div>
         <div className="col-lg-6">
-          <div className="content-card">
-            <div className="card-header-custom">
+          <div className="card">
+            <div className="card-header">
               <h5>System Overview</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               {[
                 { label: 'Customers', value: ALL_USERS.filter(u => u.role === 'CUSTOMER').length, total: totalUsers },
                 { label: 'Underwriters', value: ALL_USERS.filter(u => u.role === 'UNDERWRITER').length, total: totalUsers },
@@ -244,7 +249,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>{greeting()}, {user?.name?.split(' ')[0]} 👋</h1>
         <p>Here's what's happening with your insurance today</p>
       </div>

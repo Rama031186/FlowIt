@@ -28,12 +28,12 @@ export default function BusinessRules() {
 
   return (
     <>
-      <div className="page-header d-flex align-items-start justify-content-between">
+      <div className="mb-4 d-flex align-items-start justify-content-between">
         <div>
           <h1>Business Rules</h1>
           <p>Configure system-wide business rules and thresholds</p>
         </div>
-        <button className="btn-accent d-flex align-items-center gap-2" style={{ fontSize: 13 }}>
+        <button className="btn btn-warning d-flex align-items-center gap-2" style={{ fontSize: 13 }}>
           <FiPlus size={14} /> Add Rule
         </button>
       </div>
@@ -50,8 +50,8 @@ export default function BusinessRules() {
 
       <div className="d-flex flex-column gap-3">
         {filtered.map(rule => (
-          <div key={rule.id} className="content-card">
-            <div className="card-body-custom d-flex align-items-center gap-4">
+          <div key={rule.id} className="card">
+            <div className="card-body d-flex align-items-center gap-4">
               <div style={{
                 width: 48, height: 48, borderRadius: 14, flexShrink: 0,
                 background: rule.status === 'Active' ? 'rgba(45,156,91,0.1)' : 'rgba(25,43,55,0.06)',
@@ -74,7 +74,7 @@ export default function BusinessRules() {
               <div className="d-flex align-items-center gap-3">
                 {editingId === rule.id ? (
                   <div className="d-flex align-items-center gap-2">
-                    <input className="auth-input" style={{ width: 100, padding: '8px 12px', fontSize: 14, fontWeight: 700, textAlign: 'center' }} value={editValue} onChange={e => setEditValue(e.target.value)} />
+                    <input className="form-control" style={{ width: 100, padding: '8px 12px', fontSize: 14, fontWeight: 700, textAlign: 'center' }} value={editValue} onChange={e => setEditValue(e.target.value)} />
                     <button onClick={() => saveEdit(rule.id)} style={{ background: 'rgba(45,156,91,0.1)', border: 'none', borderRadius: 8, padding: 8, cursor: 'pointer', color: '#2d9c5b' }}><FiSave size={16} /></button>
                     <button onClick={() => setEditingId(null)} style={{ background: 'rgba(212,64,59,0.1)', border: 'none', borderRadius: 8, padding: 8, cursor: 'pointer', color: '#d4403b' }}><FiX size={16} /></button>
                   </div>

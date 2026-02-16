@@ -37,19 +37,19 @@ export default function MedicalDisclosure() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Medical Disclosure</h1>
         <p>Please answer the health questions and upload any relevant medical documents</p>
       </div>
 
       <div className="row g-4">
         <div className="col-lg-8">
-          <div className="content-card mb-4">
-            <div className="card-header-custom">
+          <div className="card mb-4">
+            <div className="card-header">
               <h5>Health Questionnaire</h5>
               <span style={{ fontSize: 12, opacity: 0.5 }}>{Object.keys(answers).length} / {questions.length} answered</span>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               {questions.map((q, i) => (
                 <div key={q.id} className="mb-4 pb-3" style={{ borderBottom: i < questions.length - 1 ? '1px solid rgba(25,43,55,0.04)' : 'none' }}>
                   <p style={{ fontSize: 14, fontWeight: 600, marginBottom: 10 }}>{i + 1}. {q.text}</p>
@@ -72,11 +72,11 @@ export default function MedicalDisclosure() {
         </div>
 
         <div className="col-lg-4">
-          <div className="content-card mb-4">
-            <div className="card-header-custom">
+          <div className="card mb-4">
+            <div className="card-header">
               <h5>Upload Documents</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               <label style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 border: '2px dashed rgba(25,43,55,0.12)', borderRadius: 14, padding: '32px 20px',
@@ -102,14 +102,14 @@ export default function MedicalDisclosure() {
             </div>
           </div>
 
-          <div className="content-card">
-            <div className="card-body-custom">
+          <div className="card">
+            <div className="card-body">
               <div className="d-flex gap-2 align-items-start mb-3" style={{ background: 'rgba(88,153,196,0.06)', padding: 12, borderRadius: 10 }}>
                 <FiAlertCircle size={16} style={{ color: '#5899c4', flexShrink: 0, marginTop: 2 }} />
                 <span style={{ fontSize: 12, opacity: 0.7 }}>All information is encrypted and only accessible to authorized underwriters.</span>
               </div>
               <button
-                className="btn-accent w-100"
+                className="btn btn-warning w-100"
                 disabled={Object.keys(answers).length < questions.length}
                 onClick={handleSubmit}
               >

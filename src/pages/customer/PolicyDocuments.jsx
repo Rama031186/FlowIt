@@ -7,7 +7,7 @@ export default function PolicyDocuments() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>My Policies</h1>
         <p>View and manage your active insurance policies</p>
       </div>
@@ -15,8 +15,8 @@ export default function PolicyDocuments() {
       <div className="row g-4">
         {POLICIES.map(policy => (
           <div className="col-md-6" key={policy.id}>
-            <div className="content-card" style={{ transition: 'all 0.3s' }}>
-              <div className="card-body-custom">
+            <div className="card" style={{ transition: 'all 0.3s' }}>
+              <div className="card-body">
                 <div className="d-flex align-items-start justify-content-between mb-3">
                   <div>
                     <div style={{ fontSize: 12, opacity: 0.4, fontWeight: 600, marginBottom: 4 }}>{policy.id}</div>
@@ -51,16 +51,16 @@ export default function PolicyDocuments() {
                 </div>
 
                 <div className="d-flex gap-2">
-                  <button className="btn-outline-custom flex-fill d-flex align-items-center justify-content-center gap-1" style={{ fontSize: 12, padding: '8px' }}>
+                  <button className="btn btn-outline-secondary flex-fill d-flex align-items-center justify-content-center gap-1" style={{ fontSize: 12, padding: '8px' }}>
                     <FiDownload size={12} /> Download
                   </button>
                   {policy.status === 'Active' && (
-                    <button className="btn-primary-custom flex-fill" style={{ fontSize: 12, padding: '8px' }} onClick={() => navigate('/policies/renew')}>
+                    <button className="btn btn-primary flex-fill" style={{ fontSize: 12, padding: '8px' }} onClick={() => navigate('/policies/renew')}>
                       Renew
                     </button>
                   )}
                   {policy.status !== 'Cancelled' && (
-                    <button className="btn-outline-custom flex-fill" style={{ fontSize: 12, padding: '8px', color: '#d4403b', borderColor: '#d4403b22' }} onClick={() => navigate('/policies/cancel')}>
+                    <button className="btn btn-outline-secondary flex-fill" style={{ fontSize: 12, padding: '8px', color: '#d4403b', borderColor: '#d4403b22' }} onClick={() => navigate('/policies/cancel')}>
                       Cancel
                     </button>
                   )}

@@ -24,7 +24,7 @@ export default function ReviewApplication() {
     return (
       <>
         <div className="d-flex align-items-center gap-3 mb-4">
-          <button className="btn-outline-custom" style={{ fontSize: 13, padding: '8px 16px' }} onClick={() => setSelectedApp(null)}>← Back</button>
+          <button className="btn btn-outline-secondary" style={{ fontSize: 13, padding: '8px 16px' }} onClick={() => setSelectedApp(null)}>← Back</button>
           <div>
             <h1 className="mb-0" style={{ fontSize: 24, fontWeight: 800 }}>Application {app.id}</h1>
             <p className="mb-0" style={{ fontSize: 13, opacity: 0.5 }}>Review application details and make a decision</p>
@@ -33,9 +33,9 @@ export default function ReviewApplication() {
 
         <div className="row g-4">
           <div className="col-lg-8">
-            <div className="content-card mb-4">
-              <div className="card-header-custom"><h5>Applicant Details</h5></div>
-              <div className="card-body-custom">
+            <div className="card mb-4">
+              <div className="card-header"><h5>Applicant Details</h5></div>
+              <div className="card-body">
                 <div className="row g-3">
                   {[
                     { label: 'Customer', value: app.customerName },
@@ -53,9 +53,9 @@ export default function ReviewApplication() {
               </div>
             </div>
 
-            <div className="content-card mb-4">
-              <div className="card-header-custom"><h5>Selected Modules</h5></div>
-              <div className="card-body-custom">
+            <div className="card mb-4">
+              <div className="card-header"><h5>Selected Modules</h5></div>
+              <div className="card-body">
                 <div className="d-flex gap-2 flex-wrap">
                   {app.selectedModules.map((m, i) => (
                     <span key={i} style={{ padding: '6px 14px', borderRadius: 8, background: 'rgba(25,43,55,0.04)', fontSize: 13, fontWeight: 500 }}>{m}</span>
@@ -65,9 +65,9 @@ export default function ReviewApplication() {
             </div>
 
             {app.conditions && (
-              <div className="content-card mb-4">
-                <div className="card-header-custom"><h5>Conditions</h5></div>
-                <div className="card-body-custom">
+              <div className="card mb-4">
+                <div className="card-header"><h5>Conditions</h5></div>
+                <div className="card-body">
                   {app.conditions.map((c, i) => (
                     <div key={i} className="d-flex align-items-center gap-2 mb-2" style={{ fontSize: 13 }}>
                       <FiAlertCircle size={14} style={{ color: '#ff5640' }} /> {c}
@@ -79,8 +79,8 @@ export default function ReviewApplication() {
           </div>
 
           <div className="col-lg-4">
-            <div className="content-card mb-4">
-              <div className="card-body-custom text-center">
+            <div className="card mb-4">
+              <div className="card-body text-center">
                 <div style={{
                   width: 80, height: 80, borderRadius: '50%', margin: '0 auto 12px',
                   background: `conic-gradient(${app.riskScore <= 35 ? '#2d9c5b' : app.riskScore <= 70 ? '#ff5640' : '#d4403b'} 0% ${app.riskScore}%, rgba(25,43,55,0.06) ${app.riskScore}% 100%)`,
@@ -97,14 +97,14 @@ export default function ReviewApplication() {
               </div>
             </div>
 
-            <div className="content-card">
-              <div className="card-header-custom"><h5>Decision</h5></div>
-              <div className="card-body-custom">
+            <div className="card">
+              <div className="card-header"><h5>Decision</h5></div>
+              <div className="card-body">
                 <div className="d-flex flex-column gap-2">
-                  <button className="btn-accent w-100 d-flex align-items-center justify-content-center gap-2" onClick={() => handleStatusChange(app.id, 'Approved')}>
+                  <button className="btn btn-warning w-100 d-flex align-items-center justify-content-center gap-2" onClick={() => handleStatusChange(app.id, 'Approved')}>
                     <FiCheck /> Approve
                   </button>
-                  <button className="btn-outline-custom w-100 d-flex align-items-center justify-content-center gap-2" onClick={() => handleStatusChange(app.id, 'Conditionally Approved')}>
+                  <button className="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center gap-2" onClick={() => handleStatusChange(app.id, 'Conditionally Approved')}>
                     <FiAlertCircle size={14} /> Conditional Approval
                   </button>
                   <button className="w-100 d-flex align-items-center justify-content-center gap-2" style={{ background: 'rgba(212,64,59,0.08)', color: '#d4403b', border: 'none', padding: '10px', borderRadius: 10, fontWeight: 600, fontSize: 13, cursor: 'pointer' }}
@@ -122,17 +122,17 @@ export default function ReviewApplication() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Review Applications</h1>
         <p>Review and manage insurance applications submitted by customers</p>
       </div>
 
-      <div className="content-card mb-4">
-        <div className="card-body-custom">
+      <div className="card mb-4">
+        <div className="card-body">
           <div className="d-flex gap-3 flex-wrap">
             <div className="position-relative flex-fill" style={{ maxWidth: 320 }}>
               <FiSearch style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.3 }} />
-              <input className="auth-input" style={{ paddingLeft: 40 }} placeholder="Search by name or ID..." value={search} onChange={e => setSearch(e.target.value)} />
+              <input className="form-control" style={{ paddingLeft: 40 }} placeholder="Search by name or ID..." value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <div className="d-flex gap-2 flex-wrap">
               {statuses.map(s => (
@@ -147,9 +147,9 @@ export default function ReviewApplication() {
         </div>
       </div>
 
-      <div className="content-card">
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+      <div className="card">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>ID</th><th>Customer</th><th>Product</th><th>Risk Score</th><th>Premium</th><th>Status</th><th>Action</th></tr></thead>
             <tbody>
               {filtered.map(app => (
@@ -161,7 +161,7 @@ export default function ReviewApplication() {
                   <td>${app.totalPremium}/mo</td>
                   <td><span className={`status-badge ${app.status.toLowerCase().replace(/\s+/g, '-')}`}>{app.status}</span></td>
                   <td>
-                    <button className="btn-outline-custom d-flex align-items-center gap-1" style={{ fontSize: 11, padding: '5px 12px' }} onClick={() => setSelectedApp(app.id)}>
+                    <button className="btn btn-outline-secondary d-flex align-items-center gap-1" style={{ fontSize: 11, padding: '5px 12px' }} onClick={() => setSelectedApp(app.id)}>
                       <FiEye size={12} /> Review
                     </button>
                   </td>
@@ -170,10 +170,10 @@ export default function ReviewApplication() {
             </tbody>
           </table>
           {filtered.length === 0 && (
-            <div className="empty-state">
-              <div className="empty-icon">📋</div>
-              <h4>No Applications Found</h4>
-              <p>Try adjusting your filters or search criteria</p>
+            <div className="text-center py-5">
+              <div style={{ fontSize: 48, marginBottom: 12 }}>📋</div>
+              <h4 className="fw-semibold">No Applications Found</h4>
+              <p className="text-muted small">Try adjusting your filters or search criteria</p>
             </div>
           )}
         </div>

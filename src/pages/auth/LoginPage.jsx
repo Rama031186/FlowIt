@@ -49,7 +49,7 @@ export default function LoginPage() {
           <p className="lead">Sign in to access your insurance dashboard</p>
 
           {error && (
-            <div className="alert alert-danger d-flex align-items-center gap-2 py-2 px-3" style={{ borderRadius: 12, fontSize: 13 }}>
+            <div className="alert alert-danger d-flex align-items-center gap-2 py-2 px-3" style={{ fontSize: 13 }}>
               <FiShield /> {error}
             </div>
           )}
@@ -61,7 +61,7 @@ export default function LoginPage() {
                 <FiMail style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
                 <input
                   type="email"
-                  className="auth-input"
+                  className="form-control"
                   style={{ paddingLeft: 40 }}
                   placeholder="Enter your email"
                   value={email}
@@ -82,7 +82,7 @@ export default function LoginPage() {
                 <FiLock style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.4 }} />
                 <input
                   type="password"
-                  className="auth-input"
+                  className="form-control"
                   style={{ paddingLeft: 40 }}
                   placeholder="Enter your password"
                   value={password}
@@ -92,7 +92,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <button type="submit" className="auth-btn auth-btn-primary mt-3 d-flex align-items-center justify-content-center gap-2">
+            <button type="submit" className="btn btn-primary btn-lg w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
               Sign In <FiArrowRight />
             </button>
           </form>
@@ -113,14 +113,8 @@ export default function LoginPage() {
                 <button
                   key={role}
                   onClick={() => handleQuickLogin(role)}
-                  className="btn btn-sm"
-                  style={{
-                    borderRadius: 10, fontSize: 12, fontWeight: 600, padding: '6px 16px',
-                    border: '1.5px solid rgba(25,43,55,0.1)', background: 'rgba(25,43,55,0.02)',
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => { e.target.style.borderColor = '#ff5640'; e.target.style.color = '#ff5640'; }}
-                  onMouseLeave={(e) => { e.target.style.borderColor = 'rgba(25,43,55,0.1)'; e.target.style.color = 'inherit'; }}
+                  className="btn btn-sm btn-outline-secondary"
+                  style={{ fontSize: 12, fontWeight: 600, padding: '6px 16px' }}
                 >
                   {ROLE_LABELS[role]}
                 </button>

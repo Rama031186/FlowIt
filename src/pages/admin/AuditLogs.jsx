@@ -24,20 +24,20 @@ export default function AuditLogs() {
 
   return (
     <>
-      <div className="page-header">
+      <div className="mb-4">
         <h1>Audit Logs</h1>
         <p>Track all system actions and modifications for compliance</p>
       </div>
 
-      <div className="content-card">
-        <div className="card-body-custom pb-0">
+      <div className="card">
+        <div className="card-body pb-0">
           <div className="d-flex gap-3 flex-wrap mb-3">
             <div className="position-relative flex-fill" style={{ maxWidth: 320 }}>
               <FiSearch style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', opacity: 0.3 }} />
-              <input className="auth-input" style={{ paddingLeft: 40 }} placeholder="Search logs..." value={search} onChange={e => setSearch(e.target.value)} />
+              <input className="form-control" style={{ paddingLeft: 40 }} placeholder="Search logs..." value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <select
-              className="auth-input"
+              className="form-control"
               style={{ width: 'auto', minWidth: 180 }}
               value={filterAction}
               onChange={e => setFilterAction(e.target.value)}
@@ -48,8 +48,8 @@ export default function AuditLogs() {
             </select>
           </div>
         </div>
-        <div className="card-body-custom p-0">
-          <table className="modern-table">
+        <div className="card-body p-0">
+          <table className="table">
             <thead><tr><th>Timestamp</th><th>Action</th><th>Actor</th><th>Role</th><th>Details</th></tr></thead>
             <tbody>
               {filtered.map(log => (

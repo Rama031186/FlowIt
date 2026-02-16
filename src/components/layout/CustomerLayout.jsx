@@ -54,56 +54,75 @@ export default function CustomerLayout() {
   const unreadNotifications = 3;
 
   return (
-    <div className="customer-portal">
+    <div className="d-flex flex-column min-vh-100">
       {/* ─── Customer Top Navigation ─── */}
-      <nav className="customer-navbar">
-        <div className="customer-navbar-inner">
+      <nav className="navbar navbar-expand-lg sticky-top customer-navbar border-bottom">
+        <div className="container">
           {/* Brand */}
-          <div className="customer-brand" onClick={() => navigate('/dashboard')}>
-            <div className="customer-brand-icon">IF</div>
-            <span className="customer-brand-text">InsureFlow</span>
+          <div className="navbar-brand d-flex align-items-center gap-2 fw-bold" style={{ cursor: 'pointer' }} onClick={() => navigate('/dashboard')}>
+            <div className="d-flex align-items-center justify-content-center text-white fw-bold"
+              style={{ width: 32, height: 32, borderRadius: 8, background: 'linear-gradient(135deg, #ff5640, #ff8066)', fontSize: 13 }}>
+              IF
+            </div>
+            <span style={{ fontSize: 18, letterSpacing: -0.3 }}>InsureFlow</span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="customer-nav-links">
+          <div className="navbar-nav d-none d-lg-flex gap-1">
             {customerNav.map(item => (
               <NavLink
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) => `customer-nav-item ${isActive ? 'active' : ''}`}
+                className={({ isActive }) =>
+                  `nav-link d-flex align-items-center gap-2 px-3 py-2 rounded-3 position-relative ${isActive ? 'fw-semibold' : ''}`
+                }
+                style={({ isActive }) => ({
+                  fontSize: 14,
+                  color: isActive ? '#ff5640' : '#192b37',
+                  fontWeight: isActive ? 600 : 500,
+                  transition: 'all 0.2s',
+                })}
               >
                 <item.icon size={16} />
                 <span>{item.label}</span>
+                {location.pathname === item.path && <div className="customer-nav-active-bar" />}
               </NavLink>
             ))}
           </div>
 
           {/* Right Section */}
-          <div className="customer-nav-right">
+          <div className="d-flex align-items-center gap-2">
             <button
-              className="customer-notif-btn"
+              className="btn btn-link text-dark position-relative p-2"
+              style={{ borderRadius: 10 }}
               onClick={() => navigate('/notifications')}
             >
               <FiBell size={18} />
               {unreadNotifications > 0 && (
-                <span className="customer-notif-badge">{unreadNotifications}</span>
+                <span className="position-absolute top-0 end-0 badge rounded-pill bg-danger"
+                  style={{ fontSize: 10, padding: '2px 5px' }}>
+                  {unreadNotifications}
+                </span>
               )}
             </button>
 
             {/* User Menu */}
-            <div className="profile-dropdown" ref={menuRef}>
+            <div className="position-relative" ref={menuRef}>
               <button
-                className="customer-user-btn"
+                className="btn btn-link text-dark d-flex align-items-center gap-2 text-decoration-none p-1"
                 onClick={() => setShowUserMenu(!showUserMenu)}
               >
                 <div
-                  className="customer-user-avatar"
-                  style={{ background: ROLE_COLORS[user?.role] || '#192b37' }}
+                  className="d-flex align-items-center justify-content-center rounded-circle text-white fw-bold"
+                  style={{
+                    width: 32, height: 32, fontSize: 12,
+                    background: ROLE_COLORS[user?.role] || '#192b37',
+                  }}
                 >
                   {initials}
                 </div>
-                <span className="customer-user-name d-none d-lg-inline">{user?.name?.split(' ')[0]}</span>
-                <FiChevronDown size={14} className="d-none d-lg-inline" style={{ opacity: 0.5 }} />
+                <span className="fw-semibold d-none d-lg-inline" style={{ fontSize: 14, color: '#192b37' }}>{user?.name?.split(' ')[0]}</span>
+                <FiChevronDown size={14} className="d-none d-lg-inline" style={{ opacity: 0.5, color: '#192b37' }} />
               </button>
 
               {showUserMenu && (
@@ -148,7 +167,8 @@ export default function CustomerLayout() {
 
             {/* Mobile toggle */}
             <button
-              className="customer-mobile-toggle"
+              className="btn btn-link text-dark d-lg-none p-2"
+              style={{ borderRadius: 10 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
@@ -158,22 +178,29 @@ export default function CustomerLayout() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="customer-mobile-menu">
+          <div className="border-top bg-white w-100 px-3 py-2 d-lg-none">
             {customerNav.map(item => (
               <NavLink
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) => `customer-mobile-item ${isActive ? 'active' : ''}`}
+                className={({ isActive }) =>
+                  `d-flex align-items-center gap-3 px-3 py-2 rounded-3 text-decoration-none ${isActive ? 'fw-semibold' : ''}`
+                }
+                style={({ isActive }) => ({
+                  fontSize: 14,
+                  color: isActive ? '#ff5640' : '#192b37',
+                  background: isActive ? 'rgba(255,86,64,0.06)' : 'transparent',
+                })}
               >
                 <item.icon size={18} />
                 <span>{item.label}</span>
               </NavLink>
             ))}
             <div style={{ height: 1, background: 'rgba(25,43,55,0.06)', margin: '8px 0' }} />
-            <NavLink to="/profile" className="customer-mobile-item">
+            <NavLink to="/profile" className="d-flex align-items-center gap-3 px-3 py-2 rounded-3 text-decoration-none" style={{ fontSize: 14, color: '#192b37' }}>
               <FiUser size={18} /> <span>My Profile</span>
             </NavLink>
-            <NavLink to="/notifications" className="customer-mobile-item">
+            <NavLink to="/notifications" className="d-flex align-items-center gap-3 px-3 py-2 rounded-3 text-decoration-none" style={{ fontSize: 14, color: '#192b37' }}>
               <FiBell size={18} /> <span>Notifications</span>
             </NavLink>
           </div>
@@ -181,20 +208,20 @@ export default function CustomerLayout() {
       </nav>
 
       {/* ─── Main Content ─── */}
-      <main className="customer-main">
-        <div className="customer-content">
+      <main className="flex-grow-1" style={{ background: '#f4f6f8' }}>
+        <div className="container py-4" style={{ animation: 'fadeInUp 0.4s ease' }}>
           <Outlet />
         </div>
       </main>
 
       {/* ─── Footer ─── */}
-      <footer className="customer-footer">
-        <div className="customer-footer-inner">
+      <footer className="bg-dark text-white-50 py-3 mt-auto" style={{ fontSize: 13 }}>
+        <div className="container d-flex justify-content-between align-items-center flex-wrap gap-2">
           <span>© 2026 InsureFlow. All rights reserved.</span>
-          <div className="customer-footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Help Center</a>
+          <div className="d-flex gap-3">
+            <a href="#" className="text-white-50 text-decoration-none" style={{ fontSize: 12 }}>Privacy Policy</a>
+            <a href="#" className="text-white-50 text-decoration-none" style={{ fontSize: 12 }}>Terms of Service</a>
+            <a href="#" className="text-white-50 text-decoration-none" style={{ fontSize: 12 }}>Help Center</a>
           </div>
         </div>
       </footer>

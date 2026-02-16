@@ -27,7 +27,7 @@ export default function SelectModules() {
   return (
     <>
       <div className="d-flex align-items-center gap-3 mb-4">
-        <button className="btn-outline-custom d-flex align-items-center gap-1" style={{ fontSize: 13, padding: '8px 16px' }} onClick={() => navigate('/products')}>
+        <button className="btn btn-outline-secondary d-flex align-items-center gap-1" style={{ fontSize: 13, padding: '8px 16px' }} onClick={() => navigate('/products')}>
           <FiArrowLeft size={14} /> Back
         </button>
         <div>
@@ -39,8 +39,8 @@ export default function SelectModules() {
       <div className="row g-4">
         <div className="col-lg-8">
           {product.modules.map(mod => (
-            <div key={mod.id} className="content-card mb-3">
-              <div className="card-body-custom">
+            <div key={mod.id} className="card mb-3">
+              <div className="card-body">
                 <div className="d-flex align-items-start justify-content-between mb-3">
                   <div>
                     <h5 style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>{mod.name}</h5>
@@ -73,11 +73,11 @@ export default function SelectModules() {
         </div>
 
         <div className="col-lg-4">
-          <div className="content-card" style={{ position: 'sticky', top: 92 }}>
-            <div className="card-header-custom">
+          <div className="card" style={{ position: 'sticky', top: 92 }}>
+            <div className="card-header">
               <h5><FiShoppingCart size={16} /> Summary</h5>
             </div>
-            <div className="card-body-custom">
+            <div className="card-body">
               <div className="d-flex justify-content-between mb-2" style={{ fontSize: 13 }}>
                 <span>Base Premium</span>
                 <span style={{ fontWeight: 600 }}>${product.basePrice}/mo</span>
@@ -98,7 +98,7 @@ export default function SelectModules() {
               </div>
 
               <button
-                className="btn-accent w-100 mt-3 d-flex align-items-center justify-content-center gap-2"
+                className="btn btn-warning w-100 mt-3 d-flex align-items-center justify-content-center gap-2"
                 disabled={selectedCount === 0}
                 onClick={() => navigate('/apply')}
               >
