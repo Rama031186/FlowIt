@@ -1,40 +1,42 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import MainLayout from './components/layout/MainLayout';
-import CustomerLayout from './components/layout/CustomerLayout';
-import { ROLES } from './constants/roles';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MainLayout from "./components/layout/MainLayout";
+import CustomerLayout from "./components/layout/CustomerLayout";
+import { ROLES } from "./constants/roles";
 
 // Auth pages
-import LoginPage from './pages/auth/LoginPage';
-import RegisterPage from './pages/auth/RegisterPage';
-import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
+import ApplyForRole from "./pages/auth/ApplyForRole";
 
 // Common pages
-import Dashboard from './pages/common/Dashboard';
-import ProfilePage from './pages/common/ProfilePage';
+import Dashboard from "./pages/common/Dashboard";
+import ProfilePage from "./pages/common/ProfilePage";
 
 // Customer pages
-import BrowseProducts from './pages/customer/BrowseProducts';
-import SelectModules from './pages/customer/SelectModules';
-import MedicalDisclosure from './pages/customer/MedicalDisclosure';
-import ApplyPolicy from './pages/customer/ApplyPolicy';
-import RiskExplanation from './pages/customer/RiskExplanation';
-import PolicyDocuments from './pages/customer/PolicyDocuments';
-import FamilyPool from './pages/customer/FamilyPool';
-import Wellness from './pages/customer/Wellness';
-import Notifications from './pages/customer/Notifications';
+import BrowseProducts from "./pages/customer/BrowseProducts";
+import SelectModules from "./pages/customer/SelectModules";
+import MedicalDisclosure from "./pages/customer/MedicalDisclosure";
+import ApplyPolicy from "./pages/customer/ApplyPolicy";
+import RiskExplanation from "./pages/customer/RiskExplanation";
+import PolicyDocuments from "./pages/customer/PolicyDocuments";
+import FamilyPool from "./pages/customer/FamilyPool";
+import Wellness from "./pages/customer/Wellness";
+import Notifications from "./pages/customer/Notifications";
 
 // Underwriter pages
-import ReviewApplication from './pages/underwriter/ReviewApplication';
-import RiskAnalysis from './pages/underwriter/RiskAnalysis';
+import ReviewApplication from "./pages/underwriter/ReviewApplication";
+import RiskAnalysis from "./pages/underwriter/RiskAnalysis";
 
 // Admin pages
-import UserManagement from './pages/admin/UserManagement';
-import ProductManagement from './pages/admin/ProductManagement';
-import BusinessRules from './pages/admin/BusinessRules';
-import PolicyControl from './pages/admin/PolicyControl';
-import AuditLogs from './pages/admin/AuditLogs';
+import UserManagement from "./pages/admin/UserManagement";
+import ProductManagement from "./pages/admin/ProductManagement";
+import BusinessRules from "./pages/admin/BusinessRules";
+import PolicyControl from "./pages/admin/PolicyControl";
+import AuditLogs from "./pages/admin/AuditLogs";
+import RoleApplications from "./pages/admin/RoleApplications";
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/apply-for-role" element={<ApplyForRole />} />
 
           {/* ═══════════════════════════════════════════════════════
               CUSTOMER PORTAL — Uses CustomerLayout (top navbar)
@@ -82,7 +85,10 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Navigate to="/admin-portal/dashboard" replace />} />
+            <Route
+              index
+              element={<Navigate to="/admin-portal/dashboard" replace />}
+            />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="notifications" element={<Notifications />} />
@@ -143,6 +149,14 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
                   <AuditLogs />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="role-applications"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
+                  <RoleApplications />
                 </ProtectedRoute>
               }
             />
