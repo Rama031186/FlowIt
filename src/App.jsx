@@ -29,10 +29,12 @@ import Notifications from "./pages/customer/Notifications";
 // Underwriter pages
 import ReviewApplication from "./pages/underwriter/ReviewApplication";
 import RiskAnalysis from "./pages/underwriter/RiskAnalysis";
+import UnderwriterReviewDashboard from "./pages/underwriter/UnderwriterReviewDashboard";
 
 // Admin pages
 import UserManagement from "./pages/admin/UserManagement";
 import ProductManagement from "./pages/admin/ProductManagement";
+import CreateProduct from "./pages/admin/CreateProduct";
 import BusinessRules from "./pages/admin/BusinessRules";
 import PolicyControl from "./pages/admin/PolicyControl";
 import AuditLogs from "./pages/admin/AuditLogs";
@@ -110,6 +112,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="product-reviews"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.UNDERWRITER]}>
+                  <UnderwriterReviewDashboard />
+                </ProtectedRoute>
+              }
+            />
 
             {/* Admin routes */}
             <Route
@@ -125,6 +135,14 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
                   <ProductManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="products/create"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
+                  <CreateProduct />
                 </ProtectedRoute>
               }
             />

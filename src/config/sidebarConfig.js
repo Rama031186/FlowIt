@@ -44,6 +44,12 @@ const sidebarConfig = [
         path: "/admin-portal/risk-analysis",
         allowedRoles: [ROLES.UNDERWRITER],
       },
+      {
+        label: "Product Reviews",
+        icon: FiFileText,
+        path: "/admin-portal/product-reviews",
+        allowedRoles: [ROLES.UNDERWRITER],
+      },
     ],
   },
   {
