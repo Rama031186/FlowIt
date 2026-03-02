@@ -11,7 +11,13 @@ import {
 } from "react-icons/fi";
 import { createProduct, createProductVersion } from "../../services/productApi";
 
-const CATEGORIES = ["INDIVIDUAL", "FAMILY_FLOATER", "SENIOR_CITIZEN", "GROUP"];
+const CATEGORIES = [
+  "INDIVIDUAL",
+  "FAMILY_FLOATER",
+  "FAMILY_POOL",
+  "SENIOR_CITIZEN",
+  "GROUP",
+];
 
 const DEFAULT_MODULE = {
   code: "",
@@ -809,7 +815,7 @@ function Step2({ version, onChange, isRopEnabled }) {
                 Effective From *
               </label>
               <input
-                type="datetime-local"
+                type="date"
                 className="form-control"
                 style={{ borderRadius: 10 }}
                 value={version.effectiveFrom}
@@ -823,10 +829,10 @@ function Step2({ version, onChange, isRopEnabled }) {
                 className="form-label"
                 style={{ fontSize: 13, fontWeight: 600 }}
               >
-                Effective To *
+                Effective To
               </label>
               <input
-                type="datetime-local"
+                type="date"
                 className="form-control"
                 style={{ borderRadius: 10 }}
                 value={version.effectiveTo}
@@ -1071,8 +1077,8 @@ export default function CreateProduct() {
       showToast("Add at least one sum insured option", "error");
       return false;
     }
-    if (!version.effectiveFrom || !version.effectiveTo) {
-      showToast("Effective dates are required", "error");
+    if (!version.effectiveFrom) {
+      showToast("Effective From date is required", "error");
       return false;
     }
     return true;
@@ -1091,8 +1097,8 @@ export default function CreateProduct() {
       await createProductVersion(created.productId, {
         modulesJson: version.modulesJson,
         rulesJson: version.rulesJson,
-        effectiveFrom: new Date(version.effectiveFrom).toISOString(),
-        effectiveTo: new Date(version.effectiveTo).toISOString(),
+        effectiveFrom: version.effectiveFrom,
+        effectiveTo: version.effectiveTo || null,
       });
       showToast("Product created successfully! Version submitted as DRAFT.");
       setTimeout(() => navigate("/admin-portal/products"), 1500);
