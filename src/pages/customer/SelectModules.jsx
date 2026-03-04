@@ -11,16 +11,35 @@ import {
   FiAlertCircle,
 } from "react-icons/fi";
 
+/* Normalise mock data into CustomerProductDto shape.
+   Real API will return this shape directly from GET /api/products */
+function toCustomerDto(p) {
+  const v = p.latestVersion || {};
+  return {
+    productId: p.id || p.productId,
+    productName: p.productName || p.name,
+    productCategory: p.productCategory,
+    isRopEnabled: p.isRopEnabled,
+    description: p.description,
+    activeVersionNumber: v.versionNumber,
+    effectiveFrom: v.effectiveFrom,
+    effectiveTo: v.effectiveTo,
+    modules: v.modules || p.modules,
+    rules: v.rules || {},
+  };
+}
+
 export default function SelectModules() {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const product = PRODUCTS.find((p) => p.id === productId) || PRODUCTS[0];
 
-  const v = product.latestVersion;
-  const modules = v?.modulesJson || {};
-  const rules = v?.rulesJson || {};
-  const sumInsuredOptions = modules.sumInsuredOptions || [];
-  const moduleList = modules.modules || [];
+  const raw = PRODUCTS.find((p) => p.id === productId) || PRODUCTS[0];
+  const product = toCustomerDto(raw);
+
+  const mods = product.modules || {};
+  const rules = product.rules || {};
+  const sumInsuredOptions = mods.sumInsuredOptions || [];
+  const moduleList = mods.modules || [];
 
   // State
   const [selectedSI, setSelectedSI] = useState(sumInsuredOptions[0] || 0);
@@ -63,9 +82,8 @@ export default function SelectModules() {
             {product.productName}
           </h1>
           <p className="mb-0" style={{ fontSize: 13, opacity: 0.5 }}>
-            {(modules.coverageType || "").replace(/_/g, " ")} • Ages{" "}
-            {modules.eligibleAgeRange?.minAge}–
-            {modules.eligibleAgeRange?.maxAge}
+            {(mods.coverageType || "").replace(/_/g, " ")} • Ages{" "}
+            {mods.eligibleAgeRange?.minAge}–{mods.eligibleAgeRange?.maxAge}
           </p>
         </div>
       </div>

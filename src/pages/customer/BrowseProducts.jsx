@@ -2,23 +2,48 @@ import { PRODUCTS } from "../../data/mockData";
 import { useNavigate } from "react-router-dom";
 import {
   FiArrowRight,
-  FiPackage,
   FiUsers,
   FiHeart,
   FiShield,
+  FiActivity,
 } from "react-icons/fi";
 
 const categoryConfig = {
   INDIVIDUAL: { label: "Individual", color: "#192b37", icon: FiShield },
-  FAMILY_FLOATER: { label: "Family Floater", color: "#5899c4", icon: FiUsers },
-  FAMILY_POOL: { label: "Family Pool", color: "#2d9c5b", icon: FiUsers },
+  FAMILY_POOL: { label: "Family Pool", color: "#5899c4", icon: FiUsers },
   SENIOR_CITIZEN: { label: "Senior Citizen", color: "#ff5640", icon: FiHeart },
-  GROUP: { label: "Group", color: "#b8860b", icon: FiUsers },
+  CRITICAL_ILLNESS: {
+    label: "Critical Illness",
+    color: "#2d9c5b",
+    icon: FiActivity,
+  },
 };
+
+/* Helper — when real API is connected, each product already comes as CustomerProductDto
+   with { productId, productName, productCategory, isRopEnabled, modules, rules, ... }.
+   Mock data mirrors this with latestVersion sub-object, so we normalise once here. */
+function toCustomerDto(p) {
+  const v = p.latestVersion || {};
+  return {
+    productId: p.id || p.productId,
+    productName: p.productName || p.name,
+    productCategory: p.productCategory,
+    isRopEnabled: p.isRopEnabled,
+    description: p.description,
+    activeVersionNumber: v.versionNumber,
+    effectiveFrom: v.effectiveFrom,
+    effectiveTo: v.effectiveTo,
+    modules: v.modules || p.modules,
+    rules: v.rules || {},
+    status: p.status,
+  };
+}
 
 export default function BrowseProducts() {
   const navigate = useNavigate();
-  const activeProducts = PRODUCTS.filter((p) => p.status === "Active");
+  const products = PRODUCTS.filter((p) => p.status === "Active").map(
+    toCustomerDto,
+  );
 
   return (
     <>
@@ -31,14 +56,13 @@ export default function BrowseProducts() {
       </div>
 
       <div className="row g-4">
-        {activeProducts.map((product) => {
-          const v = product.latestVersion;
-          const rules = v?.rulesJson;
-          const modules = v?.modulesJson;
+        {products.map((product) => {
           const cfg =
             categoryConfig[product.productCategory] ||
             categoryConfig.INDIVIDUAL;
           const Icon = cfg.icon;
+          const mods = product.modules;
+          const rules = product.rules;
 
           // Lowest premium from basePremiumBySumInsured
           const premiums = rules?.basePremiumBySumInsured
@@ -48,7 +72,7 @@ export default function BrowseProducts() {
             premiums.length > 0 ? Math.min(...premiums) : 0;
 
           return (
-            <div className="col-md-6 col-xl-3" key={product.id}>
+            <div className="col-md-6 col-xl-3" key={product.productId}>
               <div className="card border-0 h-100 p-4">
                 {/* Icon + Category */}
                 <div className="d-flex align-items-center gap-3 mb-3">
@@ -105,24 +129,24 @@ export default function BrowseProducts() {
                 </div>
 
                 {/* Age Range */}
-                {modules?.eligibleAgeRange && (
+                {mods?.eligibleAgeRange && (
                   <div
                     className="d-flex align-items-center gap-2 mb-2"
                     style={{ fontSize: 12, opacity: 0.5 }}
                   >
                     <span>
-                      Age: {modules.eligibleAgeRange.minAge}–
-                      {modules.eligibleAgeRange.maxAge} years
+                      Age: {mods.eligibleAgeRange.minAge}–
+                      {mods.eligibleAgeRange.maxAge} years
                     </span>
                     <span>•</span>
-                    <span>{modules.modules?.length || 0} Modules</span>
+                    <span>{mods.modules?.length || 0} Modules</span>
                   </div>
                 )}
 
                 {/* Sum Insured Options */}
-                {modules?.sumInsuredOptions && (
+                {mods?.sumInsuredOptions && (
                   <div className="d-flex gap-1 flex-wrap mb-3">
-                    {modules.sumInsuredOptions.map((si) => (
+                    {mods.sumInsuredOptions.map((si) => (
                       <span
                         key={si}
                         style={{
@@ -157,7 +181,7 @@ export default function BrowseProducts() {
                   <button
                     className="btn btn-warning d-flex align-items-center gap-1"
                     style={{ fontSize: 12, padding: "8px 16px" }}
-                    onClick={() => navigate(`/products/${product.id}`)}
+                    onClick={() => navigate(`/products/${product.productId}`)}
                   >
                     View Plan <FiArrowRight size={12} />
                   </button>

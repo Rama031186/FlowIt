@@ -76,7 +76,7 @@ export const PRODUCTS = [
       productVersionId: "PV-001",
       versionNumber: 2,
       versionStatus: "ACTIVE",
-      modulesJson: {
+      modules: {
         coverageType: "INDIVIDUAL",
         eligibleAgeRange: { minAge: 18, maxAge: 65 },
         sumInsuredOptions: [300000, 500000, 1000000, 2000000],
@@ -107,7 +107,7 @@ export const PRODUCTS = [
           },
         ],
       },
-      rulesJson: {
+      rules: {
         basePremiumBySumInsured: {
           300000: 4500,
           500000: 6800,
@@ -134,7 +134,7 @@ export const PRODUCTS = [
   {
     id: "P002",
     name: "EndaSure Family Shield",
-    category: "Family Floater",
+    category: "Family Pool",
     description:
       "Family-oriented pool coverage with maternity, newborn cover, and shared sum insured for the whole family.",
     basePrice: 9500,
@@ -171,14 +171,14 @@ export const PRODUCTS = [
       },
     ],
     productName: "EndaSure Family Shield",
-    productCategory: "FAMILY_FLOATER",
+    productCategory: "FAMILY_POOL",
     isRopEnabled: true,
     latestVersion: {
       productVersionId: "PV-002",
       versionNumber: 1,
       versionStatus: "ACTIVE",
-      modulesJson: {
-        coverageType: "FAMILY_FLOATER",
+      modules: {
+        coverageType: "FAMILY_POOL",
         eligibleAgeRange: { minAge: 18, maxAge: 65 },
         sumInsuredOptions: [500000, 1000000, 2000000, 3000000],
         modules: [
@@ -208,7 +208,7 @@ export const PRODUCTS = [
           },
         ],
       },
-      rulesJson: {
+      rules: {
         basePremiumBySumInsured: {
           500000: 9500,
           1000000: 14500,
@@ -269,7 +269,7 @@ export const PRODUCTS = [
       productVersionId: "PV-003",
       versionNumber: 1,
       versionStatus: "ACTIVE",
-      modulesJson: {
+      modules: {
         coverageType: "INDIVIDUAL",
         eligibleAgeRange: { minAge: 60, maxAge: 80 },
         sumInsuredOptions: [300000, 500000, 1000000],
@@ -294,7 +294,7 @@ export const PRODUCTS = [
           },
         ],
       },
-      rulesJson: {
+      rules: {
         basePremiumBySumInsured: {
           300000: 12000,
           500000: 18000,
@@ -354,7 +354,7 @@ export const PRODUCTS = [
       productVersionId: "PV-004",
       versionNumber: 1,
       versionStatus: "DRAFT",
-      modulesJson: {
+      modules: {
         coverageType: "FAMILY_POOL",
         eligibleAgeRange: { minAge: 18, maxAge: 65 },
         sumInsuredOptions: [500000, 1000000, 1500000],
@@ -379,7 +379,7 @@ export const PRODUCTS = [
           },
         ],
       },
-      rulesJson: {
+      rules: {
         basePremiumBySumInsured: {
           500000: 14500,
           1000000: 22000,

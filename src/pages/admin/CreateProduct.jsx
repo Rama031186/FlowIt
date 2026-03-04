@@ -13,10 +13,9 @@ import { createProduct, createProductVersion } from "../../services/productApi";
 
 const CATEGORIES = [
   "INDIVIDUAL",
-  "FAMILY_FLOATER",
   "FAMILY_POOL",
   "SENIOR_CITIZEN",
-  "GROUP",
+  "CRITICAL_ILLNESS",
 ];
 
 const DEFAULT_MODULE = {
