@@ -11,6 +11,7 @@ const pageTitles = {
   "/admin-portal/users": "User Management",
   "/admin-portal/products": "Product Management",
   "/admin-portal/products/create": "Create Product",
+  "/admin-portal/products/bulk-import": "Bulk Import Products",
   "/admin-portal/rules": "Business Rules",
   "/admin-portal/policies": "Policy Control",
   "/admin-portal/audit": "Audit Logs",

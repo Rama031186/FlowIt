@@ -1,7 +1,14 @@
 import { PRODUCTS } from "../../data/mockData";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FiPlus, FiEdit2, FiEye, FiLayers, FiPackage } from "react-icons/fi";
+import {
+  FiPlus,
+  FiEdit2,
+  FiEye,
+  FiLayers,
+  FiPackage,
+  FiUploadCloud,
+} from "react-icons/fi";
 
 export default function ProductManagement() {
   const [products] = useState(PRODUCTS);
@@ -200,13 +207,22 @@ export default function ProductManagement() {
           <h1>Product Management</h1>
           <p>Maintain versioned insurance products and their modules</p>
         </div>
-        <button
-          className="btn btn-warning d-flex align-items-center gap-2"
-          style={{ fontSize: 13 }}
-          onClick={() => navigate("/admin-portal/products/create")}
-        >
-          <FiPlus size={14} /> Create Product
-        </button>
+        <div className="d-flex gap-2">
+          <button
+            className="btn btn-outline-secondary d-flex align-items-center gap-2"
+            style={{ fontSize: 13 }}
+            onClick={() => navigate("/admin-portal/products/bulk-import")}
+          >
+            <FiUploadCloud size={14} /> Bulk Import
+          </button>
+          <button
+            className="btn btn-warning d-flex align-items-center gap-2"
+            style={{ fontSize: 13 }}
+            onClick={() => navigate("/admin-portal/products/create")}
+          >
+            <FiPlus size={14} /> Create Product
+          </button>
+        </div>
       </div>
 
       <div className="card">

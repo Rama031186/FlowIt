@@ -35,6 +35,7 @@ import UnderwriterReviewDashboard from "./pages/underwriter/UnderwriterReviewDas
 import UserManagement from "./pages/admin/UserManagement";
 import ProductManagement from "./pages/admin/ProductManagement";
 import CreateProduct from "./pages/admin/CreateProduct";
+import BulkImport from "./pages/admin/BulkImport";
 import BusinessRules from "./pages/admin/BusinessRules";
 import PolicyControl from "./pages/admin/PolicyControl";
 import AuditLogs from "./pages/admin/AuditLogs";
@@ -143,6 +144,14 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
                   <CreateProduct />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="products/bulk-import"
+              element={
+                <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
+                  <BulkImport />
                 </ProtectedRoute>
               }
             />
